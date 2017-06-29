@@ -1,0 +1,1183 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ODE REST API</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>ODE REST API</h1>
+    <div class="app-desc">Description of functions available from the Operational Data Environment (ODE) via RESTful interface.</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 0.0.1</div>
+    <div class="app-desc">BasePath:/</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#timQuery"><code><span class="http-method">post</span> /tim/query</code></a></li>
+  </ul>
+  <h4><a href="#PDM">PDM</a></h4>
+  <ul>
+  <li><a href="#pdmPost"><code><span class="http-method">post</span> /pdm</code></a></li>
+  </ul>
+  <h4><a href="#SNMP">SNMP</a></h4>
+  <ul>
+  <li><a href="#snmpGet"><code><span class="http-method">get</span> /RSU SNMP</code></a></li>
+  </ul>
+  <h4><a href="#TIM">TIM</a></h4>
+  <ul>
+  <li><a href="#timDelete"><code><span class="http-method">delete</span> /tim</code></a></li>
+  <li><a href="#timPost"><code><span class="http-method">post</span> /tim</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="timQuery"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /tim/query</code></pre></div>
+    <div class="method-summary">Query an RSU for set TIMs (<span class="nickname">timQuery</span>)</div>
+    <div class="method-notes">Query an RSU for set TIMs</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">RSU <a href="#RSU_1">RSU_1</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "success" : true,
+  "message" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of messages in JSON form
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Error in body request
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">408</h4>
+    Timeout
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">500</h4>
+    Misc error
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PDM">PDM</a></h1>
+  <div class="method"><a name="pdmPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /pdm</code></pre></div>
+    <div class="method-summary">PDM Interface (<span class="nickname">pdmPost</span>)</div>
+    <div class="method-notes">Submits a Probe Data Management message to ODE for distribution to the specified RSUs.</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">ProbeDataManagement <a href="#ProbeDataManagement_1">ProbeDataManagement_1</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; PDM Message </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_200">inline_response_200</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "success" : true,
+  "message" : "aeiou"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Probe Data Management message was submitted successfully. See the response body or ODE User Guide for details.
+        
+    <h4 class="field-label">400</h4>
+    Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details.
+        
+    <h4 class="field-label">500</h4>
+    Internal Server Error. See the response body or ODE User Guide for details.
+        
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="SNMP">SNMP</a></h1>
+  <div class="method"><a name="snmpGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /RSU SNMP</code></pre></div>
+    <div class="method-summary">RSU SNMP Query (<span class="nickname">snmpGet</span>)</div>
+    <div class="method-notes">Check the health and status of RSU devices through SNMP communication</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">IP (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; IP address of an RSU format: string</div><div class="param">OID (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; OID of the attribute you wish to check on format: string</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "success" : true,
+  "message" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OID responses
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Value input error
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="TIM">TIM</a></h1>
+  <div class="method"><a name="timDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /tim</code></pre></div>
+    <div class="method-summary">Delete a TIM message on an RSU. (<span class="nickname">timDelete</span>)</div>
+    <div class="method-notes">Sets the status of a designated message index on an RSU to 6.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">index (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Index of message to be deleted format: integer</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "success" : true,
+  "message" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Deleted index
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">400</h4>
+    Error in body request
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">408</h4>
+    Timeout
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">500</h4>
+    Misc error
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="timPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /tim</code></pre></div>
+    <div class="method-summary">Submit Traveler Information Message (TIM) for broadcast to Connected Vehicles. (<span class="nickname">timPost</span>)</div>
+    <div class="method-notes">Submits a TIM message to ODE for distribution to the specified RSUs and SDW.</div>
+
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">TravelerInputData <a href="#TravelerInputData_1">TravelerInputData_1</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Message containing the parameters for a Traveler Information Message including delivery information. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_200">inline_response_200</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "success" : true,
+  "message" : "aeiou"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Traveleer Information Message was submitted successfully. See the response body or ODE User Guide for details.
+        
+    <h4 class="field-label">400</h4>
+    Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details.
+        
+    <h4 class="field-label">500</h4>
+    Internal Server Error. See the response body or ODE User Guide for details.
+        
+  </div> <!-- method -->
+  <hr/>
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Attribute"><code>Attribute</code></a></li>
+    <li><a href="#Circle"><code>Circle</code></a></li>
+    <li><a href="#ComputedLane"><code>ComputedLane</code></a></li>
+    <li><a href="#DataList"><code>DataList</code></a></li>
+    <li><a href="#Geometry"><code>Geometry</code></a></li>
+    <li><a href="#ITISObj"><code>ITISObj</code></a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#J2735Position3D"><code>J2735Position3D</code></a></li>
+    <li><a href="#NodeXY"><code>NodeXY</code></a></li>
+    <li><a href="#Ode"><code>Ode</code></a></li>
+    <li><a href="#OldRegion"><code>OldRegion</code></a></li>
+    <li><a href="#PDM"><code>PDM</code></a></li>
+    <li><a href="#Path"><code>Path</code></a></li>
+    <li><a href="#pdm_ode"><code>pdm_ode</code></a></li>
+    <li><a href="#pdm_pdm"><code>pdm_pdm</code></a></li>
+    <li><a href="#pdm_pdm_vehicleStatusRequestList"><code>pdm_pdm_vehicleStatusRequestList</code></a></li>
+    <li><a href="#ProbeDataManagement"><code>ProbeDataManagement</code></a></li>
+    <li><a href="#ProbeDataManagement_1"><code>ProbeDataManagement_1</code></a></li>
+    <li><a href="#RSU"><code>RSU</code></a></li>
+    <li><a href="#RSU_1"><code>RSU_1</code></a></li>
+    <li><a href="#Region"><code>Region</code></a></li>
+    <li><a href="#RegionList"><code>RegionList</code></a></li>
+    <li><a href="#RegionPoint"><code>RegionPoint</code></a></li>
+    <li><a href="#SDW"><code>SDW</code></a></li>
+    <li><a href="#SNMP"><code>SNMP</code></a></li>
+    <li><a href="#ShapePoint"><code>ShapePoint</code></a></li>
+    <li><a href="#SpeedLimit"><code>SpeedLimit</code></a></li>
+    <li><a href="#Status"><code>Status</code></a></li>
+    <li><a href="#tim"><code>tim</code></a></li>
+    <li><a href="#tim_rsus"><code>tim_rsus</code></a></li>
+    <li><a href="#tim_tim"><code>tim_tim</code></a></li>
+    <li><a href="#tim_tim_dataFrames"><code>tim_tim_dataFrames</code></a></li>
+    <li><a href="#tim_tim_items"><code>tim_tim_items</code></a></li>
+    <li><a href="#tim_tim_position"><code>tim_tim_position</code></a></li>
+    <li><a href="#tim_tim_region"><code>tim_tim_region</code></a></li>
+    <li><a href="#tim_tim_region_geometry"><code>tim_tim_region_geometry</code></a></li>
+    <li><a href="#tim_tim_region_oldRegion"><code>tim_tim_region_oldRegion</code></a></li>
+    <li><a href="#tim_tim_region_oldRegion_circle"><code>tim_tim_region_oldRegion_circle</code></a></li>
+    <li><a href="#tim_tim_region_oldRegion_regionPoint"><code>tim_tim_region_oldRegion_regionPoint</code></a></li>
+    <li><a href="#tim_tim_region_oldRegion_regionPoint_regionList"><code>tim_tim_region_oldRegion_regionPoint_regionList</code></a></li>
+    <li><a href="#tim_tim_region_oldRegion_shapePoint"><code>tim_tim_region_oldRegion_shapePoint</code></a></li>
+    <li><a href="#tim_tim_region_path"><code>tim_tim_region_path</code></a></li>
+    <li><a href="#tim_tim_region_path_attributes"><code>tim_tim_region_path_attributes</code></a></li>
+    <li><a href="#tim_tim_region_path_attributes_dataLists"><code>tim_tim_region_path_attributes_dataLists</code></a></li>
+    <li><a href="#tim_tim_region_path_attributes_speedLimits"><code>tim_tim_region_path_attributes_speedLimits</code></a></li>
+    <li><a href="#tim_tim_region_path_computedLane"><code>tim_tim_region_path_computedLane</code></a></li>
+    <li><a href="#tim_tim_region_path_nodes"><code>tim_tim_region_path_nodes</code></a></li>
+    <li><a href="#tim_tim_sdw"><code>tim_tim_sdw</code></a></li>
+    <li><a href="#tim_tim_sdw_nwCorner"><code>tim_tim_sdw_nwCorner</code></a></li>
+    <li><a href="#tim_tim_snmp"><code>tim_tim_snmp</code></a></li>
+    <li><a href="#TravelerDataFrame"><code>TravelerDataFrame</code></a></li>
+    <li><a href="#TravelerInputData"><code>TravelerInputData</code></a></li>
+    <li><a href="#TravelerInputData_1"><code>TravelerInputData_1</code></a></li>
+    <li><a href="#VehicleStatusRequest"><code>VehicleStatusRequest</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3 class="field-label"><a name="Attribute">Attribute - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">localNodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">disabledLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">enabledLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">dataLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes_dataLists">array[tim_tim_region_path_attributes_dataLists]</a></span>  </div>
+<div class="param">dWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">dEleveation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Circle">Circle - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">radius (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">units (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ComputedLane">ComputedLane - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">laneID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetSmallX (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetLargeX (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetSmallY (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetLargeY (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">angle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">xScale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">yScale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="DataList">DataList - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pathEndpointAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownCenter (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownRight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownLeft (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">speedLimits (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes_speedLimits">tim_tim_region_path_attributes_speedLimits</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Geometry">Geometry - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">extent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">circle (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_circle">tim_tim_region_oldRegion_circle</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ITISObj">ITISObj - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">ITISCodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">ITIStext (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200">inline_response_200 - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="J2735Position3D">J2735Position3D - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">latitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">longitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">elevation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="NodeXY">NodeXY - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">delta (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nodeLat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodeLong (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">x (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">y (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes">tim_tim_region_path_attributes</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Ode">Ode - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="OldRegion">OldRegion - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">extent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">area (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regionPoint (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_regionPoint">tim_tim_region_oldRegion_regionPoint</a></span>  </div>
+<div class="param">circle (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_circle">tim_tim_region_oldRegion_circle</a></span>  </div>
+<div class="param">shapePoint (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_shapePoint">tim_tim_region_oldRegion_shapePoint</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="PDM">PDM - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">sampleStart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sampleEnd (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">directions (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termChoice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotChoice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">minSnapshotTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">maxSnapshotTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">minSnapshotDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">maxSnapshotDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotMinSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotMaxSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">txInterval (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">vehicleStatusRequestList (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_pdm_vehicleStatusRequestList">array[pdm_pdm_vehicleStatusRequestList]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Path">Path - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">scale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_nodes">array[tim_tim_region_path_nodes]</a></span>  </div>
+<div class="param">computedLane (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_computedLane">tim_tim_region_path_computedLane</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="pdm_ode">pdm_ode - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="pdm_pdm">pdm_pdm - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">sampleStart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sampleEnd (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">directions (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termChoice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">termDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotChoice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">minSnapshotTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">maxSnapshotTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">minSnapshotDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">maxSnapshotDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotMinSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">snapshotMaxSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">txInterval (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">vehicleStatusRequestList (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_pdm_vehicleStatusRequestList">array[pdm_pdm_vehicleStatusRequestList]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="pdm_pdm_vehicleStatusRequestList">pdm_pdm_vehicleStatusRequestList - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tag (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subTag (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lessThenValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">moreThenValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sendAll (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ProbeDataManagement">ProbeDataManagement - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">ode (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_ode">pdm_ode</a></span>  </div>
+<div class="param">pdm (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_pdm">pdm_pdm</a></span>  </div>
+<div class="param">rsuList (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_rsus">array[tim_rsus]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ProbeDataManagement_1">ProbeDataManagement_1 - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">ode (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_ode">pdm_ode</a></span>  </div>
+<div class="param">pdm (optional)</div><div class="param-desc"><span class="param-type"><a href="#pdm_pdm">pdm_pdm</a></span>  </div>
+<div class="param">rsuList (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_rsus">array[tim_rsus]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="RSU">RSU - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rsuTarget (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuUsername (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuRetries (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="RSU_1">RSU_1 - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rsuTarget (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuUsername (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuRetries (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Region">Region - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regulatorID&quot; (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">segmentId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_lat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_long (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_eleveation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">directionality (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">closedPath (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">path (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path">tim_tim_region_path</a></span>  </div>
+<div class="param">oldRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion">tim_tim_region_oldRegion</a></span>  </div>
+<div class="param">geometry (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_geometry">tim_tim_region_geometry</a></span>  </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">itemss (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="RegionList">RegionList - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">xOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">yOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">zOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="RegionPoint">RegionPoint - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">scale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">regionList (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_regionPoint_regionList">array[tim_tim_region_oldRegion_regionPoint_regionList]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="SDW">SDW - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">nwCorner (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw_nwCorner">tim_tim_sdw_nwCorner</a></span>  </div>
+<div class="param">seCorner (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw_nwCorner">tim_tim_sdw_nwCorner</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="SNMP">SNMP - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rsuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">msgid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">channel (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">interval (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deliverystart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deliverystop (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">enable (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ShapePoint">ShapePoint - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">directionality (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodeType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">computedLane (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_computedLane">tim_tim_region_path_computedLane</a></span>  </div>
+<div class="param">nodexy (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_nodes">array[tim_tim_region_path_nodes]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="SpeedLimit">SpeedLimit - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">velocity (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Status">Status - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim">tim - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">msgCnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">packetId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">urlB (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UrlB </div>
+<div class="param">dataFrames (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_dataFrames">array[tim_tim_dataFrames]</a></span>  </div>
+<div class="param">snmp (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_snmp">tim_tim_snmp</a></span>  </div>
+<div class="param">sdw (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw">tim_tim_sdw</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_rsus">tim_rsus - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rsuTarget (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuUsername (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuPassword (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuRetries (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rsuTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim">tim_tim - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">msgCnt (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">packetId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">urlB (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UrlB </div>
+<div class="param">dataFrames (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_dataFrames">array[tim_tim_dataFrames]</a></span>  </div>
+<div class="param">snmp (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_snmp">tim_tim_snmp</a></span>  </div>
+<div class="param">sdw (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw">tim_tim_sdw</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_dataFrames">tim_tim_dataFrames - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">sspindex </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid. </div>
+<div class="param">frameType (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">msgID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">viewAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mutcd (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">crc (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">startDateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">durationTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">priority (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspLocationRights (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspMsgTypes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspMsgContent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">items (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_items">array[tim_tim_items]</a></span>  </div>
+<div class="param">region (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region">tim_tim_region</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_items">tim_tim_items - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">ITISCodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">ITIStext (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_position">tim_tim_position - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">latitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">longitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">elevation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region">tim_tim_region - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regulatorID&quot; (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">segmentId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_lat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_long (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">anchor_eleveation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">directionality (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">closedPath (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">path (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path">tim_tim_region_path</a></span>  </div>
+<div class="param">oldRegion (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion">tim_tim_region_oldRegion</a></span>  </div>
+<div class="param">geometry (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_geometry">tim_tim_region_geometry</a></span>  </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">itemss (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_geometry">tim_tim_region_geometry - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">extent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">circle (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_circle">tim_tim_region_oldRegion_circle</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_oldRegion">tim_tim_region_oldRegion - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">direction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">extent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">area (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regionPoint (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_regionPoint">tim_tim_region_oldRegion_regionPoint</a></span>  </div>
+<div class="param">circle (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_circle">tim_tim_region_oldRegion_circle</a></span>  </div>
+<div class="param">shapePoint (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_shapePoint">tim_tim_region_oldRegion_shapePoint</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_oldRegion_circle">tim_tim_region_oldRegion_circle - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">radius (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">units (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_oldRegion_regionPoint">tim_tim_region_oldRegion_regionPoint - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">scale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">regionList (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_oldRegion_regionPoint_regionList">array[tim_tim_region_oldRegion_regionPoint_regionList]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_oldRegion_regionPoint_regionList">tim_tim_region_oldRegion_regionPoint_regionList - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">xOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">yOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">zOffset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_oldRegion_shapePoint">tim_tim_region_oldRegion_shapePoint - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">directionality (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodeType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">computedLane (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_computedLane">tim_tim_region_path_computedLane</a></span>  </div>
+<div class="param">nodexy (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_nodes">array[tim_tim_region_path_nodes]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path">tim_tim_region_path - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">scale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_nodes">array[tim_tim_region_path_nodes]</a></span>  </div>
+<div class="param">computedLane (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_computedLane">tim_tim_region_path_computedLane</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path_attributes">tim_tim_region_path_attributes - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">localNodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">disabledLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">enabledLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  </div>
+<div class="param">dataLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes_dataLists">array[tim_tim_region_path_attributes_dataLists]</a></span>  </div>
+<div class="param">dWidth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">dEleveation (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path_attributes_dataLists">tim_tim_region_path_attributes_dataLists - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">pathEndpointAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownCenter (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownRight (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneCrownLeft (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">laneAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">speedLimits (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes_speedLimits">tim_tim_region_path_attributes_speedLimits</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path_attributes_speedLimits">tim_tim_region_path_attributes_speedLimits - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">velocity (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path_computedLane">tim_tim_region_path_computedLane - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">laneID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetSmallX (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetLargeX (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetSmallY (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">offsetLargeY (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">angle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">xScale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">yScale (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_region_path_nodes">tim_tim_region_path_nodes - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">delta (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nodeLat (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">nodeLong (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">x (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">y (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region_path_attributes">tim_tim_region_path_attributes</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_sdw">tim_tim_sdw - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">nwCorner (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw_nwCorner">tim_tim_sdw_nwCorner</a></span>  </div>
+<div class="param">seCorner (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw_nwCorner">tim_tim_sdw_nwCorner</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_sdw_nwCorner">tim_tim_sdw_nwCorner - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">latitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">longitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="tim_tim_snmp">tim_tim_snmp - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">rsuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">msgid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">channel (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">interval (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deliverystart (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deliverystop (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">enable (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="TravelerDataFrame">TravelerDataFrame - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">sspindex </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid. </div>
+<div class="param">frameType (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">msgID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_position">tim_tim_position</a></span>  </div>
+<div class="param">viewAngle (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mutcd (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">crc (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">startDateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">durationTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">priority (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspLocationRights (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspMsgTypes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">sspMsgContent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">items (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_items">array[tim_tim_items]</a></span>  </div>
+<div class="param">region (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_region">tim_tim_region</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="TravelerInputData">TravelerInputData - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tim (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim">tim_tim</a></span>  </div>
+<div class="param">rsus (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_rsus">array[tim_rsus]</a></span>  </div>
+<div class="param">snmp (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_snmp">tim_tim_snmp</a></span>  </div>
+<div class="param">sdw (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw">tim_tim_sdw</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="TravelerInputData_1">TravelerInputData_1 - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tim (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim">tim_tim</a></span>  </div>
+<div class="param">rsus (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_rsus">array[tim_rsus]</a></span>  </div>
+<div class="param">snmp (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_snmp">tim_tim_snmp</a></span>  </div>
+<div class="param">sdw (optional)</div><div class="param-desc"><span class="param-type"><a href="#tim_tim_sdw">tim_tim_sdw</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VehicleStatusRequest">VehicleStatusRequest - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">tag (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subTag (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lessThenValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">moreThenValue (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sendAll (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
