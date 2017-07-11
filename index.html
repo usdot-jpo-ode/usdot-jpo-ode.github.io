@@ -1964,10 +1964,6 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="timQuery" class="">
-                      <a href="#api-Default-timQuery">timQuery</a>
-                    </li>
                   <li class="nav-header" data-group="PDM"><a href="#api-PDM">API Methods - PDM</a></li>
                     <li data-group="PDM" data-name="pdmPost" class="">
                       <a href="#api-PDM-pdmPost">pdmPost</a>
@@ -1982,6 +1978,9 @@ margin-bottom: 20px;
                     </li>
                     <li data-group="TIM" data-name="timPost" class="">
                       <a href="#api-TIM-timPost">timPost</a>
+                    </li>
+                    <li data-group="TIM" data-name="timQuery" class="">
+                      <a href="#api-TIM-timQuery">timQuery</a>
                     </li>
           </ul>
         </nav>
@@ -2002,445 +2001,6 @@ margin-bottom: 20px;
           </div>
         </div>
         <div id="sections">
-                <section id="api-Default">
-                  <h1>Default</h1>
-                    <div id="api-Default-timQuery">
-                      <article id="api-Default-timQuery-0" data-group="User" data-name="timQuery" data-version="0">
-                        <div class="pull-left">
-                          <h1>timQuery</h1>
-                          <p>Query an RSU for set TIMs</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Query an RSU for set TIMs</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/tim/query</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-timQuery-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-timQuery-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-timQuery-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-timQuery-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-timQuery-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-timQuery-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-timQuery-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X <span style="text-transform: uppercase;">post</span> "https://yourhostname//tim/query"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-timQuery-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        RSU_1 rSU = ; // RSU_1 | 
-        try {
-            inline_response_200 result = apiInstance.timQuery(rSU);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#timQuery");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-timQuery-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        RSU_1 rSU = ; // RSU_1 | 
-        try {
-            inline_response_200 result = apiInstance.timQuery(rSU);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#timQuery");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-timQuery-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-timQuery-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">RSU_1 *rSU = ; // 
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Query an RSU for set TIMs
-[apiInstance timQueryWith:rSU
-              completionHandler: ^(inline_response_200 output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-timQuery-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var OdeRestApi = require('ode_rest_api');
-
-var api = new OdeRestApi.DefaultApi()
-
-var rSU = ; // {RSU_1} 
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.timQuery(rSU, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-timQuery-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-timQuery-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class timQueryExample
-    {
-        public void main()
-        {
-            
-            var apiInstance = new DefaultApi();
-            var rSU = new RSU_1(); // RSU_1 | 
-
-            try
-            {
-                // Query an RSU for set TIMs
-                inline_response_200 result = apiInstance.timQuery(rSU);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.timQuery: " + e.Message );
-            }
-        }
-    }
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-timQuery-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\Api\DefaultApi();
-$rSU = ; // RSU_1 | 
-
-try {
-    $result = $api_instance->timQuery($rSU);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->timQuery: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-timQuery-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $rSU = WWW::SwaggerClient::Object::RSU_1->new(); # RSU_1 | 
-
-eval { 
-    my $result = $api_instance->timQuery(rSU => $rSU);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->timQuery: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-timQuery-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-rSU =  # RSU_1 | 
-
-try: 
-    # Query an RSU for set TIMs
-    api_response = api_instance.timQuery(rSU)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->timQuery: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">rSU <span style="color:red;">*</span></td>
-<td>
-
-
-<script>
-												$(document).ready(function() {
-													var schemaWrapper = {
-  "in" : "body",
-  "name" : "RSU",
-  "required" : true,
-  "schema" : {
-    "$ref" : "#/definitions/RSU_1"
-  }
-};
-													
-														var schema = schemaWrapper.schema;
-														schemaWrapper.definitions = defs;
-														JsonRefs.resolveRefs(schemaWrapper, {"depth":3, "resolveRemoteRefs":false,"resolveFileRefs":false },function (err, resolved, metadata) {
-														
-
-														
-													var view = new JSONSchemaView(resolved.schema,2,{isBodyParam: true});
-													 
-													var result = $('#d2e199_timQuery_rSU');
-													result.empty();
-													result.append(view.render());
-													
-
-													
-    											
-													
-
-
-												});
-
-
-
-												});
-												</script>
-												<div id="d2e199_timQuery_rSU"></div>
-</td>
-</tr>
-
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - List of messages in JSON form </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-timQuery-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-timQuery-200-schema">
-                                  <div id='responses-timQuery-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                                               <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "List of messages in JSON form",
-  "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        schemaWrapper.definitions = defs;
-                                        //console.log(JSON.stringify(schema))
-                                        JsonRefs.resolveRefs(schemaWrapper, {
-                                            "depth": 3,
-                                            "resolveRemoteRefs": false,
-                                            "resolveFileRefs": false
-                                        }, function(err, resolved, metadata) {
-                                          //console.log(JSON.stringify(resolved));
-                                          var view = new JSONSchemaView(resolved.schema, 3);
-                                          $('#responses-timQuery-200-schema-data').val(JSON.stringify(resolved.schema));
-                                          var result = $('#responses-timQuery-200-schema-200');
-                                          result.empty();
-                                          result.append(view.render());
-                                        });
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-timQuery-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 400 - Error in body request </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-timQuery-400-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-timQuery-400-schema">
-                                  <div id='responses-timQuery-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                                               <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Error in body request",
-  "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        schemaWrapper.definitions = defs;
-                                        //console.log(JSON.stringify(schema))
-                                        JsonRefs.resolveRefs(schemaWrapper, {
-                                            "depth": 3,
-                                            "resolveRemoteRefs": false,
-                                            "resolveFileRefs": false
-                                        }, function(err, resolved, metadata) {
-                                          //console.log(JSON.stringify(resolved));
-                                          var view = new JSONSchemaView(resolved.schema, 3);
-                                          $('#responses-timQuery-400-schema-data').val(JSON.stringify(resolved.schema));
-                                          var result = $('#responses-timQuery-400-schema-400');
-                                          result.empty();
-                                          result.append(view.render());
-                                        });
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-timQuery-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 408 - Timeout </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-timQuery-408-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-timQuery-408-schema">
-                                  <div id='responses-timQuery-408-schema-408' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                                               <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Timeout",
-  "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        schemaWrapper.definitions = defs;
-                                        //console.log(JSON.stringify(schema))
-                                        JsonRefs.resolveRefs(schemaWrapper, {
-                                            "depth": 3,
-                                            "resolveRemoteRefs": false,
-                                            "resolveFileRefs": false
-                                        }, function(err, resolved, metadata) {
-                                          //console.log(JSON.stringify(resolved));
-                                          var view = new JSONSchemaView(resolved.schema, 3);
-                                          $('#responses-timQuery-408-schema-data').val(JSON.stringify(resolved.schema));
-                                          var result = $('#responses-timQuery-408-schema-408');
-                                          result.empty();
-                                          result.append(view.render());
-                                        });
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-timQuery-408-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 500 - Misc error </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-timQuery-500-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-timQuery-500-schema">
-                                  <div id='responses-timQuery-500-schema-500' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                                               <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Misc error",
-  "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
-  }
-};
-                                        var schema = schemaWrapper.schema;
-                                        schemaWrapper.definitions = defs;
-                                        //console.log(JSON.stringify(schema))
-                                        JsonRefs.resolveRefs(schemaWrapper, {
-                                            "depth": 3,
-                                            "resolveRemoteRefs": false,
-                                            "resolveFileRefs": false
-                                        }, function(err, resolved, metadata) {
-                                          //console.log(JSON.stringify(resolved));
-                                          var view = new JSONSchemaView(resolved.schema, 3);
-                                          $('#responses-timQuery-500-schema-data').val(JSON.stringify(resolved.schema));
-                                          var result = $('#responses-timQuery-500-schema-500');
-                                          result.empty();
-                                          result.append(view.render());
-                                        });
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-timQuery-500-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                  </section>
                 <section id="api-PDM">
                   <h1>PDM</h1>
                     <div id="api-PDM-pdmPost">
@@ -4071,6 +3631,442 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-TIM-timQuery">
+                      <article id="api-TIM-timQuery-0" data-group="User" data-name="timQuery" data-version="0">
+                        <div class="pull-left">
+                          <h1>timQuery</h1>
+                          <p>Query an RSU for set TIMs</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Query an RSU for set TIMs</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/tim/query</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-TIM-timQuery-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-java">Java</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-TIM-timQuery-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-TIM-timQuery-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-TIM-timQuery-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-TIM-timQuery-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-TIM-timQuery-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-TIM-timQuery-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X <span style="text-transform: uppercase;">post</span> "https://yourhostname//tim/query"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-TIM-timQuery-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.TIMApi;
+
+import java.io.File;
+import java.util.*;
+
+public class TIMApiExample {
+
+    public static void main(String[] args) {
+        
+        TIMApi apiInstance = new TIMApi();
+        RSU_1 rSU = ; // RSU_1 | 
+        try {
+            inline_response_200 result = apiInstance.timQuery(rSU);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TIMApi#timQuery");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-TIM-timQuery-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.TIMApi;
+
+public class TIMApiExample {
+
+    public static void main(String[] args) {
+        TIMApi apiInstance = new TIMApi();
+        RSU_1 rSU = ; // RSU_1 | 
+        try {
+            inline_response_200 result = apiInstance.timQuery(rSU);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TIMApi#timQuery");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-TIM-timQuery-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">RSU_1 *rSU = ; // 
+
+TIMApi *apiInstance = [[TIMApi alloc] init];
+
+// Query an RSU for set TIMs
+[apiInstance timQueryWith:rSU
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OdeRestApi = require('ode_rest_api');
+
+var api = new OdeRestApi.TIMApi()
+
+var rSU = ; // {RSU_1} 
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.timQuery(rSU, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-TIM-timQuery-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class timQueryExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new TIMApi();
+            var rSU = new RSU_1(); // RSU_1 | 
+
+            try
+            {
+                // Query an RSU for set TIMs
+                inline_response_200 result = apiInstance.timQuery(rSU);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling TIMApi.timQuery: " + e.Message );
+            }
+        }
+    }
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\TIMApi();
+$rSU = ; // RSU_1 | 
+
+try {
+    $result = $api_instance->timQuery($rSU);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TIMApi->timQuery: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::TIMApi;
+
+my $api_instance = WWW::SwaggerClient::TIMApi->new();
+my $rSU = WWW::SwaggerClient::Object::RSU_1->new(); # RSU_1 | 
+
+eval { 
+    my $result = $api_instance->timQuery(rSU => $rSU);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling TIMApi->timQuery: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timQuery-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.TIMApi()
+rSU =  # RSU_1 | 
+
+try: 
+    # Query an RSU for set TIMs
+    api_response = api_instance.timQuery(rSU)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TIMApi->timQuery: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">rSU <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+												$(document).ready(function() {
+													var schemaWrapper = {
+  "in" : "body",
+  "name" : "RSU",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/RSU_1"
+  }
+};
+													
+														var schema = schemaWrapper.schema;
+														schemaWrapper.definitions = defs;
+														JsonRefs.resolveRefs(schemaWrapper, {"depth":3, "resolveRemoteRefs":false,"resolveFileRefs":false },function (err, resolved, metadata) {
+														
+
+														
+													var view = new JSONSchemaView(resolved.schema,2,{isBodyParam: true});
+													 
+													var result = $('#d2e199_timQuery_rSU');
+													result.empty();
+													result.append(view.render());
+													
+
+													
+    											
+													
+
+
+												});
+
+
+
+												});
+												</script>
+												<div id="d2e199_timQuery_rSU"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - List of messages in JSON form </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timQuery-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timQuery-200-schema">
+                                  <div id='responses-timQuery-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                               <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "List of messages in JSON form",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_200"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        schemaWrapper.definitions = defs;
+                                        //console.log(JSON.stringify(schema))
+                                        JsonRefs.resolveRefs(schemaWrapper, {
+                                            "depth": 3,
+                                            "resolveRemoteRefs": false,
+                                            "resolveFileRefs": false
+                                        }, function(err, resolved, metadata) {
+                                          //console.log(JSON.stringify(resolved));
+                                          var view = new JSONSchemaView(resolved.schema, 3);
+                                          $('#responses-timQuery-200-schema-data').val(JSON.stringify(resolved.schema));
+                                          var result = $('#responses-timQuery-200-schema-200');
+                                          result.empty();
+                                          result.append(view.render());
+                                        });
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timQuery-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Error in body request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timQuery-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timQuery-400-schema">
+                                  <div id='responses-timQuery-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                               <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Error in body request",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_200"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        schemaWrapper.definitions = defs;
+                                        //console.log(JSON.stringify(schema))
+                                        JsonRefs.resolveRefs(schemaWrapper, {
+                                            "depth": 3,
+                                            "resolveRemoteRefs": false,
+                                            "resolveFileRefs": false
+                                        }, function(err, resolved, metadata) {
+                                          //console.log(JSON.stringify(resolved));
+                                          var view = new JSONSchemaView(resolved.schema, 3);
+                                          $('#responses-timQuery-400-schema-data').val(JSON.stringify(resolved.schema));
+                                          var result = $('#responses-timQuery-400-schema-400');
+                                          result.empty();
+                                          result.append(view.render());
+                                        });
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timQuery-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 408 - Timeout </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timQuery-408-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timQuery-408-schema">
+                                  <div id='responses-timQuery-408-schema-408' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                               <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Timeout",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_200"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        schemaWrapper.definitions = defs;
+                                        //console.log(JSON.stringify(schema))
+                                        JsonRefs.resolveRefs(schemaWrapper, {
+                                            "depth": 3,
+                                            "resolveRemoteRefs": false,
+                                            "resolveFileRefs": false
+                                        }, function(err, resolved, metadata) {
+                                          //console.log(JSON.stringify(resolved));
+                                          var view = new JSONSchemaView(resolved.schema, 3);
+                                          $('#responses-timQuery-408-schema-data').val(JSON.stringify(resolved.schema));
+                                          var result = $('#responses-timQuery-408-schema-408');
+                                          result.empty();
+                                          result.append(view.render());
+                                        });
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timQuery-408-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Misc error </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timQuery-500-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timQuery-500-schema">
+                                  <div id='responses-timQuery-500-schema-500' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                                               <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Misc error",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_200"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        schemaWrapper.definitions = defs;
+                                        //console.log(JSON.stringify(schema))
+                                        JsonRefs.resolveRefs(schemaWrapper, {
+                                            "depth": 3,
+                                            "resolveRemoteRefs": false,
+                                            "resolveFileRefs": false
+                                        }, function(err, resolved, metadata) {
+                                          //console.log(JSON.stringify(resolved));
+                                          var view = new JSONSchemaView(resolved.schema, 3);
+                                          $('#responses-timQuery-500-schema-data').val(JSON.stringify(resolved.schema));
+                                          var result = $('#responses-timQuery-500-schema-500');
+                                          result.empty();
+                                          result.append(view.render());
+                                        });
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timQuery-500-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                   </section>
           </div>
           <div id="footer">
@@ -4085,7 +4081,7 @@ except ApiException as e:
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2017-06-29T20:06:10.479Z
+              Generated 2017-07-11T16:01:04.336Z
             </div>
           </div>
       </div>
