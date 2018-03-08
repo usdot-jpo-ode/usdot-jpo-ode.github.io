@@ -719,7 +719,7 @@ margin-bottom: 20px;
     "dataLists" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_attributes_dataLists"
+        "$ref" : "#/definitions/DataList"
       }
     },
     "dWidth" : {
@@ -734,7 +734,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
+      "$ref" : "#/definitions/J2735Position3D"
     },
     "radius" : {
       "type" : "integer"
@@ -805,7 +805,7 @@ margin-bottom: 20px;
       "description" : "MergeDivergeNodeAngle in degrees [-240..240] in increments of 1.5."
     },
     "speedLimits" : {
-      "$ref" : "#/definitions/tim_tim_region_path_attributes_speedLimits"
+      "$ref" : "#/definitions/SpeedLimit"
     }
   }
 };
@@ -825,7 +825,7 @@ margin-bottom: 20px;
       "description" : "Lane width measured in meters [0.00..327.67m] in increments of 0.01m."
     },
     "circle" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_circle"
+      "$ref" : "#/definitions/Circle"
     }
   },
   "description" : "GeometricProjection data frame is used to describe various geometric spatial areas"
@@ -837,16 +837,6 @@ margin-bottom: 20px;
       "type" : "integer"
     },
     "ITIStext" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.inline_response_200 = {
-  "properties" : {
-    "success" : {
-      "type" : "boolean"
-    },
-    "message" : {
       "type" : "string"
     }
   }
@@ -865,6 +855,18 @@ margin-bottom: 20px;
     "elevation" : {
       "type" : "number",
       "description" : "Elevation in meters [-409.5..6143.9]"
+    }
+  }
+};
+            defs.MsgID = {
+  "type" : "object",
+  "properties" : {
+    "roadSignID" : {
+      "$ref" : "#/definitions/RoadSignID"
+    },
+    "furtherInfoID" : {
+      "type" : "string",
+      "description" : "A link to any other incident information data that may be available in the normal ATIS incident description or other messages, a 4-digit hex string or 16-digit binary string."
     }
   }
 };
@@ -892,7 +894,7 @@ margin-bottom: 20px;
       "description" : "Offset-B10 in meters [-5.11..5.11m]"
     },
     "attributes" : {
-      "$ref" : "#/definitions/tim_tim_region_path_attributes"
+      "$ref" : "#/definitions/Attribute"
     }
   }
 };
@@ -917,13 +919,13 @@ margin-bottom: 20px;
       "type" : "string"
     },
     "regionPoint" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_regionPoint"
+      "$ref" : "#/definitions/RegionPoint"
     },
     "circle" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_circle"
+      "$ref" : "#/definitions/Circle"
     },
     "shapePoint" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_shapePoint"
+      "$ref" : "#/definitions/ShapePoint"
     }
   }
 };
@@ -975,7 +977,7 @@ margin-bottom: 20px;
     "vehicleStatusRequestList" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/pdm_pdm_vehicleStatusRequestList"
+        "$ref" : "#/definitions/VehicleStatusRequest"
       }
     }
   }
@@ -992,92 +994,11 @@ margin-bottom: 20px;
     "nodes" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_nodes"
+        "$ref" : "#/definitions/NodeXY"
       }
     },
     "computedLane" : {
-      "$ref" : "#/definitions/tim_tim_region_path_computedLane"
-    }
-  }
-};
-            defs.pdm_ode = {
-  "properties" : {
-    "version" : {
-      "type" : "integer"
-    }
-  }
-};
-            defs.pdm_pdm = {
-  "properties" : {
-    "sampleStart" : {
-      "type" : "string"
-    },
-    "sampleEnd" : {
-      "type" : "string"
-    },
-    "directions" : {
-      "type" : "string"
-    },
-    "termChoice" : {
-      "type" : "string"
-    },
-    "termTime" : {
-      "type" : "string"
-    },
-    "termDistance" : {
-      "type" : "string"
-    },
-    "snapshotChoice" : {
-      "type" : "string"
-    },
-    "minSnapshotTime" : {
-      "type" : "string"
-    },
-    "maxSnapshotTime" : {
-      "type" : "string"
-    },
-    "minSnapshotDistance" : {
-      "type" : "string"
-    },
-    "maxSnapshotDistance" : {
-      "type" : "string"
-    },
-    "snapshotMinSpeed" : {
-      "type" : "string"
-    },
-    "snapshotMaxSpeed" : {
-      "type" : "string"
-    },
-    "txInterval" : {
-      "type" : "string"
-    },
-    "vehicleStatusRequestList" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/pdm_pdm_vehicleStatusRequestList"
-      }
-    }
-  }
-};
-            defs.pdm_pdm_vehicleStatusRequestList = {
-  "properties" : {
-    "tag" : {
-      "type" : "string"
-    },
-    "subTag" : {
-      "type" : "string"
-    },
-    "lessThenValue" : {
-      "type" : "string"
-    },
-    "moreThenValue" : {
-      "type" : "string"
-    },
-    "sendAll" : {
-      "type" : "string"
-    },
-    "status" : {
-      "type" : "string"
+      "$ref" : "#/definitions/ComputedLane"
     }
   }
 };
@@ -1085,32 +1006,15 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "ode" : {
-      "$ref" : "#/definitions/pdm_ode"
+      "$ref" : "#/definitions/Ode"
     },
     "pdm" : {
-      "$ref" : "#/definitions/pdm_pdm"
+      "$ref" : "#/definitions/PDM"
     },
     "rsuList" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_rsus"
-      }
-    }
-  }
-};
-            defs.ProbeDataManagement_1 = {
-  "type" : "object",
-  "properties" : {
-    "ode" : {
-      "$ref" : "#/definitions/pdm_ode"
-    },
-    "pdm" : {
-      "$ref" : "#/definitions/pdm_pdm"
-    },
-    "rsuList" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_rsus"
+        "$ref" : "#/definitions/RSU"
       }
     }
   }
@@ -1138,32 +1042,8 @@ margin-bottom: 20px;
       "type" : "integer",
       "description" : "Timeout measured in milliseconds"
     }
-  }
-};
-            defs.RSU_1 = {
-  "type" : "object",
-  "properties" : {
-    "rsuTarget" : {
-      "type" : "string",
-      "description" : "IPv4 address of RSU"
-    },
-    "rsuUsername" : {
-      "type" : "string",
-      "description" : "SNMP username"
-    },
-    "rsuPassword" : {
-      "type" : "string",
-      "description" : "SNMP password"
-    },
-    "rsuRetries" : {
-      "type" : "integer",
-      "description" : "Number of retries upon message send failure"
-    },
-    "rsuTimeout" : {
-      "type" : "integer",
-      "description" : "Timeout measured in milliseconds"
-    }
-  }
+  },
+  "description" : "Optional field, needed for SNMP deposit to RSU."
 };
             defs.Region = {
   "type" : "object",
@@ -1203,13 +1083,13 @@ margin-bottom: 20px;
       "type" : "string"
     },
     "path" : {
-      "$ref" : "#/definitions/tim_tim_region_path"
+      "$ref" : "#/definitions/Path"
     },
     "oldRegion" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion"
+      "$ref" : "#/definitions/OldRegion"
     },
     "geometry" : {
-      "$ref" : "#/definitions/tim_tim_region_geometry"
+      "$ref" : "#/definitions/Geometry"
     },
     "content" : {
       "type" : "string"
@@ -1243,7 +1123,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
+      "$ref" : "#/definitions/J2735Position3D"
     },
     "zoom" : {
       "type" : "integer",
@@ -1252,19 +1132,72 @@ margin-bottom: 20px;
     "regionList" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_region_oldRegion_regionPoint_regionList"
+        "$ref" : "#/definitions/RegionList"
       }
+    }
+  }
+};
+            defs.RoadSignID = {
+  "type" : "object",
+  "properties" : {
+    "position" : {
+      "$ref" : "#/definitions/J2735Position3D"
+    },
+    "viewAngle" : {
+      "type" : "string"
+    },
+    "mutcdCode" : {
+      "type" : "string",
+      "description" : "One of the following enumeration constats: none,             -- non-MUTCD information regulatory,       -- \"R\" Regulatory signs warning,          -- \"W\" warning signs maintenance,      -- \"M\" Maintenance and construction motoristService,  -- Motorist Services guide,            -- \"G\" Guide signs rec               -- Recreation and Cultural Interest"
+    },
+    "crc" : {
+      "type" : "string",
+      "description" : "Message cyclic-redundancy-check code in 4-digit hex string or 16-digit binary string."
     }
   }
 };
             defs.SDW = {
   "type" : "object",
   "properties" : {
+    "deliverystart" : {
+      "type" : "string",
+      "description" : "Optional field, ISO string for message delivery start time. Identical to \"deliverystart\" field in SNMP for when RSU deposit not desired."
+    },
+    "deliverystop" : {
+      "type" : "string",
+      "description" : "Optional field, ISO string for message delivery stop time. Identical to \"deliverystop\" field in SNMP for when RSU deposit not desired."
+    },
+    "groupID" : {
+      "type" : "string",
+      "description" : "Eight-digit hex code of the groupID to use, for example \"A123B456\". GroupID is used"
+    },
+    "ttl" : {
+      "type" : "string",
+      "description" : "Message time to live.",
+      "enum" : [ "oneminute", "thirtyminutes", "oneday", "oneweek", "onemonth", "oneyear" ]
+    },
+    "serviceRegion" : {
+      "$ref" : "#/definitions/SDW_serviceRegion"
+    }
+  }
+};
+            defs.SDW_serviceRegion = {
+  "properties" : {
     "nwCorner" : {
-      "$ref" : "#/definitions/tim_tim_sdw_nwCorner"
+      "$ref" : "#/definitions/SDW_serviceRegion_nwCorner"
     },
     "seCorner" : {
-      "$ref" : "#/definitions/tim_tim_sdw_nwCorner"
+      "$ref" : "#/definitions/SDW_serviceRegion_nwCorner"
+    }
+  }
+};
+            defs.SDW_serviceRegion_nwCorner = {
+  "properties" : {
+    "latitude" : {
+      "type" : "string"
+    },
+    "longitude" : {
+      "type" : "string"
     }
   }
 };
@@ -1288,11 +1221,11 @@ margin-bottom: 20px;
     },
     "deliverystart" : {
       "type" : "string",
-      "description" : "ISO string for message delivery start time"
+      "description" : "ISO string for message delivery start time. Takes priority over \"deliverystart\" field in SDW."
     },
     "deliverystop" : {
       "type" : "string",
-      "description" : "ISO string for message delivery stop time"
+      "description" : "ISO string for message delivery stop time. Takes priority over \"deliverystop\" field in SDW."
     },
     "enable" : {
       "type" : "string"
@@ -1300,13 +1233,14 @@ margin-bottom: 20px;
     "status" : {
       "type" : "string"
     }
-  }
+  },
+  "description" : "Optional field, needed for SNMP deposit to RSU."
 };
             defs.ShapePoint = {
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
+      "$ref" : "#/definitions/J2735Position3D"
     },
     "directionality" : {
       "type" : "integer"
@@ -1315,12 +1249,12 @@ margin-bottom: 20px;
       "type" : "string"
     },
     "computedLane" : {
-      "$ref" : "#/definitions/tim_tim_region_path_computedLane"
+      "$ref" : "#/definitions/ComputedLane"
     },
     "nodexy" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_nodes"
+        "$ref" : "#/definitions/NodeXY"
       }
     }
   }
@@ -1357,545 +1291,32 @@ margin-bottom: 20px;
       "description" : "Index of message storage on RSU."
     },
     "msgCnt" : {
-      "type" : "integer"
+      "type" : "integer",
+      "description" : "Range [0..127], used to provide a sequence number within a stream of messages with the same DSRCmsgID and from the same sender."
     },
     "timestamp" : {
       "type" : "string",
-      "description" : "ISO time of message creation."
+      "description" : "ISO 8601 time of message creation, for example \"2017-08-03T22:25:36.297Z\"."
     },
     "packetId" : {
-      "type" : "integer"
+      "type" : "string",
+      "description" : "Provides a unique message ID to given in a 9 byte hex string"
     },
     "urlB" : {
       "type" : "string",
-      "description" : "UrlB"
+      "description" : "Standard URL link to designated resource."
     },
     "dataFrames" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_dataFrames"
+        "$ref" : "#/definitions/TravelerDataFrame"
       }
     },
     "snmp" : {
-      "$ref" : "#/definitions/tim_tim_snmp"
+      "$ref" : "#/definitions/SNMP"
     },
     "sdw" : {
-      "$ref" : "#/definitions/tim_tim_sdw"
-    }
-  }
-};
-            defs.tim_rsus = {
-  "properties" : {
-    "rsuTarget" : {
-      "type" : "string",
-      "description" : "IPv4 address of RSU"
-    },
-    "rsuUsername" : {
-      "type" : "string",
-      "description" : "SNMP username"
-    },
-    "rsuPassword" : {
-      "type" : "string",
-      "description" : "SNMP password"
-    },
-    "rsuRetries" : {
-      "type" : "integer",
-      "description" : "Number of retries upon message send failure"
-    },
-    "rsuTimeout" : {
-      "type" : "integer",
-      "description" : "Timeout measured in milliseconds"
-    }
-  }
-};
-            defs.tim_tim = {
-  "properties" : {
-    "index" : {
-      "type" : "integer",
-      "description" : "Index of message storage on RSU."
-    },
-    "msgCnt" : {
-      "type" : "integer"
-    },
-    "timestamp" : {
-      "type" : "string",
-      "description" : "ISO time of message creation."
-    },
-    "packetId" : {
-      "type" : "integer"
-    },
-    "urlB" : {
-      "type" : "string",
-      "description" : "UrlB"
-    },
-    "dataFrames" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_dataFrames"
-      }
-    },
-    "snmp" : {
-      "$ref" : "#/definitions/tim_tim_snmp"
-    },
-    "sdw" : {
-      "$ref" : "#/definitions/tim_tim_sdw"
-    }
-  }
-};
-            defs.tim_tim_dataFrames = {
-  "required" : [ "sspindex" ],
-  "properties" : {
-    "sspindex" : {
-      "type" : "integer",
-      "description" : "The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid."
-    },
-    "frameType" : {
-      "type" : "integer"
-    },
-    "msgID" : {
-      "type" : "string"
-    },
-    "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
-    },
-    "viewAngle" : {
-      "type" : "string"
-    },
-    "mutcd" : {
-      "type" : "integer"
-    },
-    "crc" : {
-      "type" : "integer"
-    },
-    "startDateTime" : {
-      "type" : "string"
-    },
-    "durationTime" : {
-      "type" : "integer"
-    },
-    "priority" : {
-      "type" : "integer"
-    },
-    "sspLocationRights" : {
-      "type" : "integer"
-    },
-    "sspMsgTypes" : {
-      "type" : "integer"
-    },
-    "sspMsgContent" : {
-      "type" : "integer"
-    },
-    "content" : {
-      "type" : "string"
-    },
-    "items" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_items"
-      }
-    },
-    "region" : {
-      "$ref" : "#/definitions/tim_tim_region"
-    }
-  }
-};
-            defs.tim_tim_items = {
-  "properties" : {
-    "ITISCodes" : {
-      "type" : "integer"
-    },
-    "ITIStext" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.tim_tim_position = {
-  "properties" : {
-    "latitude" : {
-      "type" : "number",
-      "description" : "Latitude in degrees [-90.0..90.0]"
-    },
-    "longitude" : {
-      "type" : "number",
-      "description" : "Longitude in degrees [-90.0..90.0]"
-    },
-    "elevation" : {
-      "type" : "number",
-      "description" : "Elevation in meters [-409.5..6143.9]"
-    }
-  }
-};
-            defs.tim_tim_region = {
-  "properties" : {
-    "name" : {
-      "type" : "string"
-    },
-    "regulatorID\"" : {
-      "type" : "integer"
-    },
-    "segmentId" : {
-      "type" : "integer"
-    },
-    "anchor_lat" : {
-      "type" : "integer"
-    },
-    "anchor_long" : {
-      "type" : "integer"
-    },
-    "anchor_eleveation" : {
-      "type" : "integer"
-    },
-    "laneWidth" : {
-      "type" : "number",
-      "description" : "Lane width measured in meters [0.00..327.67m] in increments of 0.01m."
-    },
-    "directionality" : {
-      "type" : "integer"
-    },
-    "closedPath" : {
-      "type" : "string"
-    },
-    "direction" : {
-      "type" : "string"
-    },
-    "description" : {
-      "type" : "string"
-    },
-    "path" : {
-      "$ref" : "#/definitions/tim_tim_region_path"
-    },
-    "oldRegion" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion"
-    },
-    "geometry" : {
-      "$ref" : "#/definitions/tim_tim_region_geometry"
-    },
-    "content" : {
-      "type" : "string"
-    },
-    "itemss" : {
-      "type" : "array",
-      "items" : {
-        "type" : "integer"
-      }
-    }
-  }
-};
-            defs.tim_tim_region_geometry = {
-  "properties" : {
-    "direction" : {
-      "type" : "string",
-      "description" : "HeadingSlice bitstring representing field of view over which this projection applies"
-    },
-    "extent" : {
-      "type" : "integer",
-      "description" : "Extent enumeration integer value [0=useInstantlyOnly,...,15=forever]"
-    },
-    "laneWidth" : {
-      "type" : "number",
-      "description" : "Lane width measured in meters [0.00..327.67m] in increments of 0.01m."
-    },
-    "circle" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_circle"
-    }
-  },
-  "description" : "GeometricProjection data frame is used to describe various geometric spatial areas"
-};
-            defs.tim_tim_region_oldRegion = {
-  "properties" : {
-    "direction" : {
-      "type" : "string"
-    },
-    "extent" : {
-      "type" : "integer"
-    },
-    "area" : {
-      "type" : "string"
-    },
-    "regionPoint" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_regionPoint"
-    },
-    "circle" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_circle"
-    },
-    "shapePoint" : {
-      "$ref" : "#/definitions/tim_tim_region_oldRegion_shapePoint"
-    }
-  }
-};
-            defs.tim_tim_region_oldRegion_circle = {
-  "properties" : {
-    "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
-    },
-    "radius" : {
-      "type" : "integer"
-    },
-    "units" : {
-      "type" : "integer"
-    }
-  }
-};
-            defs.tim_tim_region_oldRegion_regionPoint = {
-  "properties" : {
-    "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
-    },
-    "zoom" : {
-      "type" : "integer",
-      "description" : "(OPTIONAL) A zoom scale applied in units of 2^N."
-    },
-    "regionList" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_region_oldRegion_regionPoint_regionList"
-      }
-    }
-  }
-};
-            defs.tim_tim_region_oldRegion_regionPoint_regionList = {
-  "properties" : {
-    "xOffset" : {
-      "type" : "number",
-      "description" : "OffsetLL-B16 measured in degrees [-0.0032767..0.0032767]"
-    },
-    "yOffset" : {
-      "type" : "number",
-      "description" : "OffsetLL-B16 measured in degrees [-0.0032767..0.0032767]"
-    },
-    "zOffset" : {
-      "type" : "number",
-      "description" : "(OPTIONAL) OffsetLL-B16 measured in degrees [-0.0032767..0.0032767]"
-    }
-  }
-};
-            defs.tim_tim_region_oldRegion_shapePoint = {
-  "properties" : {
-    "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
-    },
-    "directionality" : {
-      "type" : "integer"
-    },
-    "nodeType" : {
-      "type" : "string"
-    },
-    "computedLane" : {
-      "$ref" : "#/definitions/tim_tim_region_path_computedLane"
-    },
-    "nodexy" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_nodes"
-      }
-    }
-  }
-};
-            defs.tim_tim_region_path = {
-  "properties" : {
-    "type" : {
-      "type" : "string"
-    },
-    "scale" : {
-      "type" : "integer"
-    },
-    "nodes" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_nodes"
-      }
-    },
-    "computedLane" : {
-      "$ref" : "#/definitions/tim_tim_region_path_computedLane"
-    }
-  }
-};
-            defs.tim_tim_region_path_attributes = {
-  "properties" : {
-    "localNodes" : {
-      "type" : "array",
-      "items" : {
-        "type" : "integer"
-      }
-    },
-    "disabledLists" : {
-      "type" : "array",
-      "items" : {
-        "type" : "integer"
-      }
-    },
-    "enabledLists" : {
-      "type" : "array",
-      "items" : {
-        "type" : "integer"
-      }
-    },
-    "dataLists" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_tim_region_path_attributes_dataLists"
-      }
-    },
-    "dWidth" : {
-      "type" : "integer"
-    },
-    "dEleveation" : {
-      "type" : "integer"
-    }
-  }
-};
-            defs.tim_tim_region_path_attributes_dataLists = {
-  "properties" : {
-    "pathEndpointAngle" : {
-      "type" : "integer",
-      "description" : "Final angle in last point of lane path in integer degrees [-150..150]."
-    },
-    "laneCrownCenter" : {
-      "type" : "number",
-      "description" : "RoadwayCrownAngle in degrees [-38.1..38.1] in increments of 0.3."
-    },
-    "laneCrownRight" : {
-      "type" : "number",
-      "description" : "RoadwayCrownAngle in degrees [-38.1..38.1] in increments of 0.3."
-    },
-    "laneCrownLeft" : {
-      "type" : "number",
-      "description" : "RoadwayCrownAngle in degrees [-38.1..38.1] in increments of 0.3."
-    },
-    "laneAngle" : {
-      "type" : "number",
-      "description" : "MergeDivergeNodeAngle in degrees [-240..240] in increments of 1.5."
-    },
-    "speedLimits" : {
-      "$ref" : "#/definitions/tim_tim_region_path_attributes_speedLimits"
-    }
-  }
-};
-            defs.tim_tim_region_path_attributes_speedLimits = {
-  "properties" : {
-    "type" : {
-      "type" : "integer",
-      "description" : "SpeedLimitType enumeration integer value [0=unknown,1=maxSpeedInSchoolZone,..,12=vehiclesWithTrailersNightMaxSpeed]"
-    },
-    "velocity" : {
-      "type" : "number",
-      "description" : "Velocity in meters per second [0.00..163.82] in increments of 0.02 m/s."
-    }
-  }
-};
-            defs.tim_tim_region_path_computedLane = {
-  "properties" : {
-    "laneID" : {
-      "type" : "integer",
-      "description" : "LaneID [0..255]"
-    },
-    "offsetSmallX" : {
-      "type" : "number",
-      "description" : "Reference lane offset measured in meters [-20.47..20.47m]."
-    },
-    "offsetLargeX" : {
-      "type" : "number",
-      "description" : "Reference lane offset measured in meters [-327.67..327.67m]."
-    },
-    "offsetSmallY" : {
-      "type" : "number",
-      "description" : "Reference lane offset measured in meters [-20.47..20.47m]."
-    },
-    "offsetLargeY" : {
-      "type" : "number",
-      "description" : "Reference lane offset measured in meters [-32767..327.67m]."
-    },
-    "angle" : {
-      "type" : "number",
-      "description" : "Lane rotation measured in degrees [0..359.9875] in steps of 0.0125."
-    },
-    "xScale" : {
-      "type" : "number",
-      "description" : "Scale factor in percent [0..202.35%] in steps of 0.05."
-    },
-    "yScale" : {
-      "type" : "number",
-      "description" : "Scale factor in percent [0..202.35%] in steps of 0.05."
-    }
-  }
-};
-            defs.tim_tim_region_path_nodes = {
-  "properties" : {
-    "delta" : {
-      "type" : "string",
-      "description" : "One of Node-XY-20b, Node-XY-22b, Node-XY-24b, Node-XY-26b, Node-XY-28b, Node-XY-32b, Node-LLmD-64b,"
-    },
-    "nodeLat" : {
-      "type" : "number",
-      "description" : "Latitude, used for Node-LLmD-64b"
-    },
-    "nodeLong" : {
-      "type" : "number",
-      "description" : "Longitude, used for Node-LLmD-64b"
-    },
-    "x" : {
-      "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
-    },
-    "y" : {
-      "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
-    },
-    "attributes" : {
-      "$ref" : "#/definitions/tim_tim_region_path_attributes"
-    }
-  }
-};
-            defs.tim_tim_sdw = {
-  "properties" : {
-    "nwCorner" : {
-      "$ref" : "#/definitions/tim_tim_sdw_nwCorner"
-    },
-    "seCorner" : {
-      "$ref" : "#/definitions/tim_tim_sdw_nwCorner"
-    }
-  }
-};
-            defs.tim_tim_sdw_nwCorner = {
-  "properties" : {
-    "latitude" : {
-      "type" : "string"
-    },
-    "longitude" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.tim_tim_snmp = {
-  "properties" : {
-    "rsuid" : {
-      "type" : "string"
-    },
-    "msgid" : {
-      "type" : "string"
-    },
-    "mode" : {
-      "type" : "string"
-    },
-    "channel" : {
-      "type" : "string"
-    },
-    "interval" : {
-      "type" : "string"
-    },
-    "deliverystart" : {
-      "type" : "string",
-      "description" : "ISO string for message delivery start time"
-    },
-    "deliverystop" : {
-      "type" : "string",
-      "description" : "ISO string for message delivery stop time"
-    },
-    "enable" : {
-      "type" : "string"
-    },
-    "status" : {
-      "type" : "string"
+      "$ref" : "#/definitions/SDW"
     }
   }
 };
@@ -1903,33 +1324,27 @@ margin-bottom: 20px;
   "type" : "object",
   "required" : [ "sspindex" ],
   "properties" : {
+    "sspTimRights" : {
+      "type" : "integer",
+      "description" : "A short header information"
+    },
     "sspindex" : {
       "type" : "integer",
       "description" : "The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid."
     },
     "frameType" : {
-      "type" : "integer"
+      "type" : "string",
+      "description" : "One of the following TravelerInfoType enumeration constants: unknown, advisory, roadSignage, commercialSignage"
     },
-    "msgID" : {
-      "type" : "string"
-    },
-    "position" : {
-      "$ref" : "#/definitions/tim_tim_position"
-    },
-    "viewAngle" : {
-      "type" : "string"
-    },
-    "mutcd" : {
-      "type" : "integer"
-    },
-    "crc" : {
-      "type" : "integer"
+    "msgId" : {
+      "$ref" : "#/definitions/MsgID"
     },
     "startDateTime" : {
       "type" : "string"
     },
     "durationTime" : {
-      "type" : "integer"
+      "type" : "integer",
+      "description" : "Range [0..3200], message duration time, in minutes. A value of 32000 means forever."
     },
     "priority" : {
       "type" : "integer"
@@ -1944,16 +1359,17 @@ margin-bottom: 20px;
       "type" : "integer"
     },
     "content" : {
-      "type" : "string"
+      "type" : "string",
+      "description" : "Part III content type, one of \"Advisory\", \"Work Zone\", \"Generic Signage\", \"Speed Limit\", or \"Exit Service\"."
     },
     "items" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_tim_items"
+        "$ref" : "#/definitions/ITISObj"
       }
     },
     "region" : {
-      "$ref" : "#/definitions/tim_tim_region"
+      "$ref" : "#/definitions/Region"
     }
   }
 };
@@ -1961,39 +1377,19 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "tim" : {
-      "$ref" : "#/definitions/tim_tim"
+      "$ref" : "#/definitions/tim"
     },
     "rsus" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/tim_rsus"
+        "$ref" : "#/definitions/RSU"
       }
     },
     "snmp" : {
-      "$ref" : "#/definitions/tim_tim_snmp"
+      "$ref" : "#/definitions/SNMP"
     },
     "sdw" : {
-      "$ref" : "#/definitions/tim_tim_sdw"
-    }
-  }
-};
-            defs.TravelerInputData_1 = {
-  "type" : "object",
-  "properties" : {
-    "tim" : {
-      "$ref" : "#/definitions/tim_tim"
-    },
-    "rsus" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/tim_rsus"
-      }
-    },
-    "snmp" : {
-      "$ref" : "#/definitions/tim_tim_snmp"
-    },
-    "sdw" : {
-      "$ref" : "#/definitions/tim_tim_sdw"
+      "$ref" : "#/definitions/SDW"
     }
   }
 };
@@ -2051,6 +1447,9 @@ margin-bottom: 20px;
                     <li data-group="TIM" data-name="timPost" class="">
                       <a href="#api-TIM-timPost">timPost</a>
                     </li>
+                    <li data-group="TIM" data-name="timPut" class="">
+                      <a href="#api-TIM-timPut">timPut</a>
+                    </li>
                     <li data-group="TIM" data-name="timQuery" class="">
                       <a href="#api-TIM-timQuery">timQuery</a>
                     </li>
@@ -2069,7 +1468,7 @@ margin-bottom: 20px;
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 0.0.1</div>
             <hr>
-            <div>Description of functions available from the Operational Data Environment (ODE) via RESTful interface.</div>
+            <div>Description of functions available from the Operational Data Environment (ODE) via RESTful interface. Ranges given follow interval notation, for example (0,1) or (0..1) means 0 &lt; x &lt; 1 and [0,1] or [0..1] means 0 ≤ x ≤ 1.</div>
           </div>
         </div>
         <div id="sections">
@@ -2123,9 +1522,9 @@ public class PDMApiExample {
     public static void main(String[] args) {
         
         PDMApi apiInstance = new PDMApi();
-        ProbeDataManagement_1 probeDataManagement = ; // ProbeDataManagement_1 | PDM Message
+        ProbeDataManagement probeDataManagement = ; // ProbeDataManagement | PDM Message
         try {
-            array[inline_response_200] result = apiInstance.pdmPost(probeDataManagement);
+            array[Status] result = apiInstance.pdmPost(probeDataManagement);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PDMApi#pdmPost");
@@ -2142,9 +1541,9 @@ public class PDMApiExample {
 
     public static void main(String[] args) {
         PDMApi apiInstance = new PDMApi();
-        ProbeDataManagement_1 probeDataManagement = ; // ProbeDataManagement_1 | PDM Message
+        ProbeDataManagement probeDataManagement = ; // ProbeDataManagement | PDM Message
         try {
-            array[inline_response_200] result = apiInstance.pdmPost(probeDataManagement);
+            array[Status] result = apiInstance.pdmPost(probeDataManagement);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PDMApi#pdmPost");
@@ -2158,13 +1557,13 @@ public class PDMApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-PDM-pdmPost-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">ProbeDataManagement_1 *probeDataManagement = ; // PDM Message
+                              <pre class="prettyprint"><code class="language-cpp">ProbeDataManagement *probeDataManagement = ; // PDM Message
 
 PDMApi *apiInstance = [[PDMApi alloc] init];
 
 // PDM Interface
 [apiInstance pdmPostWith:probeDataManagement
-              completionHandler: ^(array[inline_response_200] output, NSError* error) {
+              completionHandler: ^(array[Status] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2180,7 +1579,7 @@ PDMApi *apiInstance = [[PDMApi alloc] init];
 
 var api = new OdeRestApi.PDMApi()
 
-var probeDataManagement = ; // {ProbeDataManagement_1} PDM Message
+var probeDataManagement = ; // {ProbeDataManagement} PDM Message
 
 
 var callback = function(error, data, response) {
@@ -2212,12 +1611,12 @@ namespace Example
         {
             
             var apiInstance = new PDMApi();
-            var probeDataManagement = new ProbeDataManagement_1(); // ProbeDataManagement_1 | PDM Message
+            var probeDataManagement = new ProbeDataManagement(); // ProbeDataManagement | PDM Message
 
             try
             {
                 // PDM Interface
-                array[inline_response_200] result = apiInstance.pdmPost(probeDataManagement);
+                array[Status] result = apiInstance.pdmPost(probeDataManagement);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2235,7 +1634,7 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\PDMApi();
-$probeDataManagement = ; // ProbeDataManagement_1 | PDM Message
+$probeDataManagement = ; // ProbeDataManagement | PDM Message
 
 try {
     $result = $api_instance->pdmPost($probeDataManagement);
@@ -2252,7 +1651,7 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::PDMApi;
 
 my $api_instance = WWW::SwaggerClient::PDMApi->new();
-my $probeDataManagement = WWW::SwaggerClient::Object::ProbeDataManagement_1->new(); # ProbeDataManagement_1 | PDM Message
+my $probeDataManagement = WWW::SwaggerClient::Object::ProbeDataManagement->new(); # ProbeDataManagement | PDM Message
 
 eval { 
     my $result = $api_instance->pdmPost(probeDataManagement => $probeDataManagement);
@@ -2272,7 +1671,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.PDMApi()
-probeDataManagement =  # ProbeDataManagement_1 | PDM Message
+probeDataManagement =  # ProbeDataManagement | PDM Message
 
 try: 
     # PDM Interface
@@ -2305,7 +1704,7 @@ $(document).ready(function() {
   "description" : "PDM Message",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/ProbeDataManagement_1"
+    "$ref" : "#/definitions/ProbeDataManagement"
   }
 };
   var schema = schemaWrapper.schema;
@@ -2352,7 +1751,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -2398,7 +1797,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -2444,7 +1843,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -2528,7 +1927,7 @@ public class SNMPApiExample {
         BigDecimal iP = 3.4; // BigDecimal | IP address of an RSU
         BigDecimal oID = 3.4; // BigDecimal | OID of the attribute you wish to check on
         try {
-            inline_response_200 result = apiInstance.snmpGet(iP, oID);
+            Status result = apiInstance.snmpGet(iP, oID);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SNMPApi#snmpGet");
@@ -2548,7 +1947,7 @@ public class SNMPApiExample {
         BigDecimal iP = 3.4; // BigDecimal | IP address of an RSU
         BigDecimal oID = 3.4; // BigDecimal | OID of the attribute you wish to check on
         try {
-            inline_response_200 result = apiInstance.snmpGet(iP, oID);
+            Status result = apiInstance.snmpGet(iP, oID);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SNMPApi#snmpGet");
@@ -2570,7 +1969,7 @@ SNMPApi *apiInstance = [[SNMPApi alloc] init];
 // RSU SNMP Query
 [apiInstance snmpGetWith:iP
     oID:oID
-              completionHandler: ^(inline_response_200 output, NSError* error) {
+              completionHandler: ^(Status output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2626,7 +2025,7 @@ namespace Example
             try
             {
                 // RSU SNMP Query
-                inline_response_200 result = apiInstance.snmpGet(iP, oID);
+                Status result = apiInstance.snmpGet(iP, oID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2779,7 +2178,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "OID responses",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -2822,7 +2221,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Value input error",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -2904,7 +2303,7 @@ public class TIMApiExample {
         TIMApi apiInstance = new TIMApi();
         BigDecimal index = 3.4; // BigDecimal | Index of message to be deleted
         try {
-            inline_response_200 result = apiInstance.timDelete(index);
+            Status result = apiInstance.timDelete(index);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timDelete");
@@ -2923,7 +2322,7 @@ public class TIMApiExample {
         TIMApi apiInstance = new TIMApi();
         BigDecimal index = 3.4; // BigDecimal | Index of message to be deleted
         try {
-            inline_response_200 result = apiInstance.timDelete(index);
+            Status result = apiInstance.timDelete(index);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timDelete");
@@ -2943,7 +2342,7 @@ TIMApi *apiInstance = [[TIMApi alloc] init];
 
 // Delete a TIM message on an RSU.
 [apiInstance timDeleteWith:index
-              completionHandler: ^(inline_response_200 output, NSError* error) {
+              completionHandler: ^(Status output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -2996,7 +2395,7 @@ namespace Example
             try
             {
                 // Delete a TIM message on an RSU.
-                inline_response_200 result = apiInstance.timDelete(index);
+                Status result = apiInstance.timDelete(index);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3120,7 +2519,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Deleted index",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3163,7 +2562,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Error in body request",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3206,7 +2605,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Timeout",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3249,7 +2648,7 @@ except ApiException as e:
                                         var schemaWrapper = {
   "description" : "Misc error",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3326,9 +2725,9 @@ public class TIMApiExample {
     public static void main(String[] args) {
         
         TIMApi apiInstance = new TIMApi();
-        TravelerInputData_1 travelerInputData = ; // TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+        TravelerInputData travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
         try {
-            array[inline_response_200] result = apiInstance.timPost(travelerInputData);
+            array[Status] result = apiInstance.timPost(travelerInputData);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timPost");
@@ -3345,9 +2744,9 @@ public class TIMApiExample {
 
     public static void main(String[] args) {
         TIMApi apiInstance = new TIMApi();
-        TravelerInputData_1 travelerInputData = ; // TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+        TravelerInputData travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
         try {
-            array[inline_response_200] result = apiInstance.timPost(travelerInputData);
+            array[Status] result = apiInstance.timPost(travelerInputData);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timPost");
@@ -3361,13 +2760,13 @@ public class TIMApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-TIM-timPost-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">TravelerInputData_1 *travelerInputData = ; // Message containing the parameters for a Traveler Information Message including delivery information.
+                              <pre class="prettyprint"><code class="language-cpp">TravelerInputData *travelerInputData = ; // Message containing the parameters for a Traveler Information Message including delivery information.
 
 TIMApi *apiInstance = [[TIMApi alloc] init];
 
 // Submit Traveler Information Message (TIM) for broadcast to Connected Vehicles.
 [apiInstance timPostWith:travelerInputData
-              completionHandler: ^(array[inline_response_200] output, NSError* error) {
+              completionHandler: ^(array[Status] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3383,7 +2782,7 @@ TIMApi *apiInstance = [[TIMApi alloc] init];
 
 var api = new OdeRestApi.TIMApi()
 
-var travelerInputData = ; // {TravelerInputData_1} Message containing the parameters for a Traveler Information Message including delivery information.
+var travelerInputData = ; // {TravelerInputData} Message containing the parameters for a Traveler Information Message including delivery information.
 
 
 var callback = function(error, data, response) {
@@ -3415,12 +2814,12 @@ namespace Example
         {
             
             var apiInstance = new TIMApi();
-            var travelerInputData = new TravelerInputData_1(); // TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+            var travelerInputData = new TravelerInputData(); // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
 
             try
             {
                 // Submit Traveler Information Message (TIM) for broadcast to Connected Vehicles.
-                array[inline_response_200] result = apiInstance.timPost(travelerInputData);
+                array[Status] result = apiInstance.timPost(travelerInputData);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3438,7 +2837,7 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\TIMApi();
-$travelerInputData = ; // TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+$travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
 
 try {
     $result = $api_instance->timPost($travelerInputData);
@@ -3455,7 +2854,7 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::TIMApi;
 
 my $api_instance = WWW::SwaggerClient::TIMApi->new();
-my $travelerInputData = WWW::SwaggerClient::Object::TravelerInputData_1->new(); # TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+my $travelerInputData = WWW::SwaggerClient::Object::TravelerInputData->new(); # TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
 
 eval { 
     my $result = $api_instance->timPost(travelerInputData => $travelerInputData);
@@ -3475,7 +2874,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.TIMApi()
-travelerInputData =  # TravelerInputData_1 | Message containing the parameters for a Traveler Information Message including delivery information.
+travelerInputData =  # TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
 
 try: 
     # Submit Traveler Information Message (TIM) for broadcast to Connected Vehicles.
@@ -3508,7 +2907,7 @@ $(document).ready(function() {
   "description" : "Message containing the parameters for a Traveler Information Message including delivery information.",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/TravelerInputData_1"
+    "$ref" : "#/definitions/TravelerInputData"
   }
 };
   var schema = schemaWrapper.schema;
@@ -3555,7 +2954,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -3601,7 +3000,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -3647,7 +3046,7 @@ $(document).ready(function() {
   "schema" : {
     "type" : "array",
     "items" : {
-      "$ref" : "#/definitions/inline_response_200"
+      "$ref" : "#/definitions/Status"
     }
   }
 };
@@ -3671,6 +3070,405 @@ $(document).ready(function() {
                                     </script>
                                   </div>
                                   <input id='responses-timPost-500-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-TIM-timPut">
+                      <article id="api-TIM-timPut-0" data-group="User" data-name="timPut" data-version="0">
+                        <div class="pull-left">
+                          <h1>timPut</h1>
+                          <p>Used to update an existing TIM already present on an RSU.</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Update a Traveler Information Message (TIM) that has already been deposited to an RSU. Parameters and response codes are identical to the POST request. Will also deposit the new message to the SDW, if the SDW field is present.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/tim</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-TIM-timPut-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-java">Java</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-TIM-timPut-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-TIM-timPut-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-TIM-timPut-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-TIM-timPut-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-TIM-timPut-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-TIM-timPut-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://yourhostname/tim"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-TIM-timPut-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.TIMApi;
+
+import java.io.File;
+import java.util.*;
+
+public class TIMApiExample {
+
+    public static void main(String[] args) {
+        
+        TIMApi apiInstance = new TIMApi();
+        TravelerInputData travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+        try {
+            array[Status] result = apiInstance.timPut(travelerInputData);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TIMApi#timPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-TIM-timPut-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.TIMApi;
+
+public class TIMApiExample {
+
+    public static void main(String[] args) {
+        TIMApi apiInstance = new TIMApi();
+        TravelerInputData travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+        try {
+            array[Status] result = apiInstance.timPut(travelerInputData);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TIMApi#timPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-TIM-timPut-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-TIM-timPut-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">TravelerInputData *travelerInputData = ; // Message containing the parameters for a Traveler Information Message including delivery information.
+
+TIMApi *apiInstance = [[TIMApi alloc] init];
+
+// Used to update an existing TIM already present on an RSU.
+[apiInstance timPutWith:travelerInputData
+              completionHandler: ^(array[Status] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timPut-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OdeRestApi = require('ode_rest_api');
+
+var api = new OdeRestApi.TIMApi()
+
+var travelerInputData = ; // {TravelerInputData} Message containing the parameters for a Traveler Information Message including delivery information.
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.timPut(travelerInputData, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-TIM-timPut-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-TIM-timPut-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class timPutExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new TIMApi();
+            var travelerInputData = new TravelerInputData(); // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+
+            try
+            {
+                // Used to update an existing TIM already present on an RSU.
+                array[Status] result = apiInstance.timPut(travelerInputData);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling TIMApi.timPut: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timPut-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\TIMApi();
+$travelerInputData = ; // TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+
+try {
+    $result = $api_instance->timPut($travelerInputData);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TIMApi->timPut: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timPut-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::TIMApi;
+
+my $api_instance = WWW::SwaggerClient::TIMApi->new();
+my $travelerInputData = WWW::SwaggerClient::Object::TravelerInputData->new(); # TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+
+eval { 
+    my $result = $api_instance->timPut(travelerInputData => $travelerInputData);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling TIMApi->timPut: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-TIM-timPut-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.TIMApi()
+travelerInputData =  # TravelerInputData | Message containing the parameters for a Traveler Information Message including delivery information.
+
+try: 
+    # Used to update an existing TIM already present on an RSU.
+    api_response = api_instance.tim_put(travelerInputData)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TIMApi->timPut: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">travelerInputData <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "TravelerInputData",
+  "description" : "Message containing the parameters for a Traveler Information Message including delivery information.",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/TravelerInputData"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_timPut_travelerInputData');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_timPut_travelerInputData"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Traveleer Information Message was submitted successfully. See the response body or ODE User Guide for details. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timPut-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timPut-200-schema">
+                                  <div id='responses-timPut-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Traveleer Information Message was submitted successfully. See the response body or ODE User Guide for details.",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-timPut-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-timPut-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timPut-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timPut-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timPut-400-schema">
+                                  <div id='responses-timPut-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details.",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-timPut-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-timPut-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timPut-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Internal Server Error. See the response body or ODE User Guide for details. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-timPut-500-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-timPut-500-schema">
+                                  <div id='responses-timPut-500-schema-500' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Internal Server Error. See the response body or ODE User Guide for details.",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-timPut-500-schema-data').val(stringify(schema));
+                                        var result = $('#responses-timPut-500-schema-500');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-timPut-500-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -3725,9 +3523,9 @@ public class TIMApiExample {
     public static void main(String[] args) {
         
         TIMApi apiInstance = new TIMApi();
-        RSU_1 rSU = ; // RSU_1 | 
+        RSU rSU = ; // RSU | 
         try {
-            inline_response_200 result = apiInstance.timQuery(rSU);
+            Status result = apiInstance.timQuery(rSU);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timQuery");
@@ -3744,9 +3542,9 @@ public class TIMApiExample {
 
     public static void main(String[] args) {
         TIMApi apiInstance = new TIMApi();
-        RSU_1 rSU = ; // RSU_1 | 
+        RSU rSU = ; // RSU | 
         try {
-            inline_response_200 result = apiInstance.timQuery(rSU);
+            Status result = apiInstance.timQuery(rSU);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TIMApi#timQuery");
@@ -3760,13 +3558,13 @@ public class TIMApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-TIM-timQuery-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">RSU_1 *rSU = ; // 
+                              <pre class="prettyprint"><code class="language-cpp">RSU *rSU = ; // 
 
 TIMApi *apiInstance = [[TIMApi alloc] init];
 
 // Query an RSU for set TIMs
 [apiInstance timQueryWith:rSU
-              completionHandler: ^(inline_response_200 output, NSError* error) {
+              completionHandler: ^(Status output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3782,7 +3580,7 @@ TIMApi *apiInstance = [[TIMApi alloc] init];
 
 var api = new OdeRestApi.TIMApi()
 
-var rSU = ; // {RSU_1} 
+var rSU = ; // {RSU} 
 
 
 var callback = function(error, data, response) {
@@ -3814,12 +3612,12 @@ namespace Example
         {
             
             var apiInstance = new TIMApi();
-            var rSU = new RSU_1(); // RSU_1 | 
+            var rSU = new RSU(); // RSU | 
 
             try
             {
                 // Query an RSU for set TIMs
-                inline_response_200 result = apiInstance.timQuery(rSU);
+                Status result = apiInstance.timQuery(rSU);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3837,7 +3635,7 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\TIMApi();
-$rSU = ; // RSU_1 | 
+$rSU = ; // RSU | 
 
 try {
     $result = $api_instance->timQuery($rSU);
@@ -3854,7 +3652,7 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::TIMApi;
 
 my $api_instance = WWW::SwaggerClient::TIMApi->new();
-my $rSU = WWW::SwaggerClient::Object::RSU_1->new(); # RSU_1 | 
+my $rSU = WWW::SwaggerClient::Object::RSU->new(); # RSU | 
 
 eval { 
     my $result = $api_instance->timQuery(rSU => $rSU);
@@ -3874,7 +3672,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.TIMApi()
-rSU =  # RSU_1 | 
+rSU =  # RSU | 
 
 try: 
     # Query an RSU for set TIMs
@@ -3906,7 +3704,7 @@ $(document).ready(function() {
   "name" : "RSU",
   "required" : true,
   "schema" : {
-    "$ref" : "#/definitions/RSU_1"
+    "$ref" : "#/definitions/RSU"
   }
 };
   var schema = schemaWrapper.schema;
@@ -3951,7 +3749,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "List of messages in JSON form",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -3994,7 +3792,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Error in body request",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -4037,7 +3835,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Timeout",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -4080,7 +3878,7 @@ $(document).ready(function() {
                                         var schemaWrapper = {
   "description" : "Misc error",
   "schema" : {
-    "$ref" : "#/definitions/inline_response_200"
+    "$ref" : "#/definitions/Status"
   }
 };
                                         var schema = schemaWrapper.schema;
@@ -4123,7 +3921,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2017-08-24T17:58:50.235Z
+              Generated 2018-03-08T13:51:45.253Z
             </div>
           </div>
       </div>
