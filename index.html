@@ -735,7 +735,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/J2735Position3D"
+      "$ref" : "#/definitions/OdePosition3D"
     },
     "radius" : {
       "type" : "integer"
@@ -831,34 +831,6 @@ margin-bottom: 20px;
   },
   "description" : "GeometricProjection data frame is used to describe various geometric spatial areas"
 };
-            defs.ITISObj = {
-  "type" : "object",
-  "properties" : {
-    "ITISCodes" : {
-      "type" : "integer"
-    },
-    "ITIStext" : {
-      "type" : "string"
-    }
-  }
-};
-            defs.J2735Position3D = {
-  "type" : "object",
-  "properties" : {
-    "latitude" : {
-      "type" : "number",
-      "description" : "Latitude in degrees [-90.0..90.0]"
-    },
-    "longitude" : {
-      "type" : "number",
-      "description" : "Longitude in degrees [-90.0..90.0]"
-    },
-    "elevation" : {
-      "type" : "number",
-      "description" : "Elevation in meters [-409.5..6143.9]"
-    }
-  }
-};
             defs.MsgID = {
   "type" : "object",
   "properties" : {
@@ -904,6 +876,23 @@ margin-bottom: 20px;
   "properties" : {
     "version" : {
       "type" : "integer"
+    }
+  }
+};
+            defs.OdePosition3D = {
+  "type" : "object",
+  "properties" : {
+    "latitude" : {
+      "type" : "number",
+      "description" : "Latitude in degrees [-90.0..90.0]"
+    },
+    "longitude" : {
+      "type" : "number",
+      "description" : "Longitude in degrees [-90.0..90.0]"
+    },
+    "elevation" : {
+      "type" : "number",
+      "description" : "Elevation in meters [-409.5..6143.9]"
     }
   }
 };
@@ -1052,7 +1041,7 @@ margin-bottom: 20px;
     "name" : {
       "type" : "string"
     },
-    "regulatorID\"" : {
+    "regulatorID" : {
       "type" : "integer"
     },
     "segmentId" : {
@@ -1091,15 +1080,6 @@ margin-bottom: 20px;
     },
     "geometry" : {
       "$ref" : "#/definitions/Geometry"
-    },
-    "content" : {
-      "type" : "string"
-    },
-    "itemss" : {
-      "type" : "array",
-      "items" : {
-        "type" : "integer"
-      }
     }
   }
 };
@@ -1124,7 +1104,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/J2735Position3D"
+      "$ref" : "#/definitions/OdePosition3D"
     },
     "zoom" : {
       "type" : "integer",
@@ -1142,7 +1122,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/J2735Position3D"
+      "$ref" : "#/definitions/OdePosition3D"
     },
     "viewAngle" : {
       "type" : "string"
@@ -1245,7 +1225,7 @@ margin-bottom: 20px;
   "type" : "object",
   "properties" : {
     "position" : {
-      "$ref" : "#/definitions/J2735Position3D"
+      "$ref" : "#/definitions/OdePosition3D"
     },
     "directionality" : {
       "type" : "integer"
@@ -1316,12 +1296,6 @@ margin-bottom: 20px;
       "items" : {
         "$ref" : "#/definitions/TravelerDataFrame"
       }
-    },
-    "snmp" : {
-      "$ref" : "#/definitions/SNMP"
-    },
-    "sdw" : {
-      "$ref" : "#/definitions/SDW"
     }
   }
 };
@@ -1332,10 +1306,6 @@ margin-bottom: 20px;
     "sspTimRights" : {
       "type" : "integer",
       "description" : "A short header information"
-    },
-    "sspindex" : {
-      "type" : "integer",
-      "description" : "The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid."
     },
     "frameType" : {
       "type" : "string",
@@ -1357,6 +1327,16 @@ margin-bottom: 20px;
     "sspLocationRights" : {
       "type" : "integer"
     },
+    "sspindex" : {
+      "type" : "integer",
+      "description" : "The SSP index is used to control the data elements that follow the occurrence of the index. The index relates back to the SSP contents in the CERT used to declare what content is allowed by that CERT. In the absence of a matching index in the message sender’s CERT, the message contents are not valid."
+    },
+    "regions" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Region"
+      }
+    },
     "sspMsgTypes" : {
       "type" : "integer"
     },
@@ -1370,11 +1350,9 @@ margin-bottom: 20px;
     "items" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/ITISObj"
+        "type" : "string",
+        "description" : "If the value is purely an integer number, it will be interpreted as ITIS code.  If it is not an integer, it will be interpreted as a text message. If you intend to send an integral value as a literal integer, prefix the number with a single quote ('), for example, \"'98765\" will be interpreted as literal 98765. The prefix character will be removed before populating  the TIM message One may mix ITIS code and text in the  items array."
       }
-    },
-    "region" : {
-      "$ref" : "#/definitions/Region"
     }
   }
 };
@@ -1437,6 +1415,10 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
+                  <li class="nav-header" data-group="LogFile"><a href="#api-LogFile">API Methods - LogFile</a></li>
+                    <li data-group="LogFile" data-name="uploadObulog" class="">
+                      <a href="#api-LogFile-uploadObulog">uploadObulog</a>
+                    </li>
                   <li class="nav-header" data-group="PDM"><a href="#api-PDM">API Methods - PDM</a></li>
                     <li data-group="PDM" data-name="pdmPost" class="">
                       <a href="#api-PDM-pdmPost">pdmPost</a>
@@ -1477,6 +1459,394 @@ margin-bottom: 20px;
           </div>
         </div>
         <div id="sections">
+                <section id="api-LogFile">
+                  <h1>LogFile</h1>
+                    <div id="api-LogFile-uploadObulog">
+                      <article id="api-LogFile-uploadObulog-0" data-group="User" data-name="uploadObulog" data-version="0">
+                        <div class="pull-left">
+                          <h1>uploadObulog</h1>
+                          <p>File upload interface</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Uploads an OBU log file to ODE upload folder to be processed and propaged</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/upload/obulog</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-LogFile-uploadObulog-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-java">Java</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-LogFile-uploadObulog-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-LogFile-uploadObulog-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-LogFile-uploadObulog-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-LogFile-uploadObulog-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://yourhostname/upload/obulog"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-LogFile-uploadObulog-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.LogFileApi;
+
+import java.io.File;
+import java.util.*;
+
+public class LogFileApiExample {
+
+    public static void main(String[] args) {
+        
+        LogFileApi apiInstance = new LogFileApi();
+        File file = /path/to/file.txt; // File | The file to upload.
+        try {
+            array[Status] result = apiInstance.uploadObulog(file);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LogFileApi#uploadObulog");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-LogFile-uploadObulog-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.LogFileApi;
+
+public class LogFileApiExample {
+
+    public static void main(String[] args) {
+        LogFileApi apiInstance = new LogFileApi();
+        File file = /path/to/file.txt; // File | The file to upload.
+        try {
+            array[Status] result = apiInstance.uploadObulog(file);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LogFileApi#uploadObulog");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-LogFile-uploadObulog-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">File *file = /path/to/file.txt; // The file to upload. (optional)
+
+LogFileApi *apiInstance = [[LogFileApi alloc] init];
+
+// File upload interface
+[apiInstance uploadObulogWith:file
+              completionHandler: ^(array[Status] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OdeRestApi = require('ode_rest_api');
+
+var api = new OdeRestApi.LogFileApi()
+
+var opts = { 
+  'file': /path/to/file.txt // {File} The file to upload.
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.uploadObulog(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-LogFile-uploadObulog-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class uploadObulogExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new LogFileApi();
+            var file = new File(); // File | The file to upload. (optional) 
+
+            try
+            {
+                // File upload interface
+                array[Status] result = apiInstance.uploadObulog(file);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling LogFileApi.uploadObulog: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\LogFileApi();
+$file = /path/to/file.txt; // File | The file to upload.
+
+try {
+    $result = $api_instance->uploadObulog($file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LogFileApi->uploadObulog: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::LogFileApi;
+
+my $api_instance = WWW::SwaggerClient::LogFileApi->new();
+my $file = /path/to/file.txt; # File | The file to upload.
+
+eval { 
+    my $result = $api_instance->uploadObulog(file => $file);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling LogFileApi->uploadObulog: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-LogFile-uploadObulog-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.LogFileApi()
+file = /path/to/file.txt # File | The file to upload. (optional)
+
+try: 
+    # File upload interface
+    api_response = api_instance.upload_obulog(file=file)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LogFileApi->uploadObulog: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+                            <div class="methodsubtabletitle">Form parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">file</td>
+<td>
+
+
+    <div id="d2e199_uploadObulog_file">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    File
+                </span>
+
+                    <div class="inner description">
+                        The file to upload.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - File uploaded successfully </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-uploadObulog-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-uploadObulog-200-schema">
+                                  <div id='responses-uploadObulog-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "File uploaded successfully",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-uploadObulog-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-uploadObulog-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-uploadObulog-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-uploadObulog-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-uploadObulog-400-schema">
+                                  <div id='responses-uploadObulog-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request. Issued if request is invalid or failed to be executed. See the response body or ODE User Guide for details.",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-uploadObulog-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-uploadObulog-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-uploadObulog-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Internal Server Error. See the response body or ODE User Guide for details. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-uploadObulog-500-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-uploadObulog-500-schema">
+                                  <div id='responses-uploadObulog-500-schema-500' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Internal Server Error. See the response body or ODE User Guide for details.",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Status"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-uploadObulog-500-schema-data').val(stringify(schema));
+                                        var result = $('#responses-uploadObulog-500-schema-500');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-uploadObulog-500-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
                 <section id="api-PDM">
                   <h1>PDM</h1>
                     <div id="api-PDM-pdmPost">
@@ -1890,10 +2260,10 @@ $(document).ready(function() {
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Check the health and status of RSU devices through SNMP communication</p>
+                        <p class="marked">Check the health and status of RSU devices through SNMP communication. You should receive a detailed plain text response that looks like the following example. If the device is off, a 4 second timeout will occur and the ODE will indicate this with an &quot;[ERROR] Empty response&quot; message. (This specific OID returns the amount of time since the device was last powered on) &quot;[1.3.6.1.2.1.1.3.0 &#x3D; 0:05:12.59]&quot;</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/RSU SNMP</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/rsuHeartbeat</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -1913,7 +2283,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-SNMP-snmpGet-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://yourhostname/RSU SNMP?IP=&OID="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://yourhostname/rsuHeartbeat?ip=&oid="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-SNMP-snmpGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1929,10 +2299,10 @@ public class SNMPApiExample {
     public static void main(String[] args) {
         
         SNMPApi apiInstance = new SNMPApi();
-        BigDecimal iP = 8.14; // BigDecimal | IP address of an RSU
-        BigDecimal oID = 8.14; // BigDecimal | OID of the attribute you wish to check on
+        BigDecimal ip = 8.14; // BigDecimal | IP address of an RSU
+        BigDecimal oid = 8.14; // BigDecimal | OID of the attribute you wish to check on
         try {
-            Status result = apiInstance.snmpGet(iP, oID);
+            Status result = apiInstance.snmpGet(ip, oid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SNMPApi#snmpGet");
@@ -1949,10 +2319,10 @@ public class SNMPApiExample {
 
     public static void main(String[] args) {
         SNMPApi apiInstance = new SNMPApi();
-        BigDecimal iP = 8.14; // BigDecimal | IP address of an RSU
-        BigDecimal oID = 8.14; // BigDecimal | OID of the attribute you wish to check on
+        BigDecimal ip = 8.14; // BigDecimal | IP address of an RSU
+        BigDecimal oid = 8.14; // BigDecimal | OID of the attribute you wish to check on
         try {
-            Status result = apiInstance.snmpGet(iP, oID);
+            Status result = apiInstance.snmpGet(ip, oid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SNMPApi#snmpGet");
@@ -1966,14 +2336,14 @@ public class SNMPApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-SNMP-snmpGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">BigDecimal *iP = 8.14; // IP address of an RSU
-BigDecimal *oID = 8.14; // OID of the attribute you wish to check on
+                              <pre class="prettyprint"><code class="language-cpp">BigDecimal *ip = 8.14; // IP address of an RSU
+BigDecimal *oid = 8.14; // OID of the attribute you wish to check on
 
 SNMPApi *apiInstance = [[SNMPApi alloc] init];
 
 // RSU SNMP Query
-[apiInstance snmpGetWith:iP
-    oID:oID
+[apiInstance snmpGetWith:ip
+    oid:oid
               completionHandler: ^(Status output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1990,9 +2360,9 @@ SNMPApi *apiInstance = [[SNMPApi alloc] init];
 
 var api = new OdeRestApi.SNMPApi()
 
-var iP = 8.14; // {BigDecimal} IP address of an RSU
+var ip = 8.14; // {BigDecimal} IP address of an RSU
 
-var oID = 8.14; // {BigDecimal} OID of the attribute you wish to check on
+var oid = 8.14; // {BigDecimal} OID of the attribute you wish to check on
 
 
 var callback = function(error, data, response) {
@@ -2002,7 +2372,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.snmpGet(iP, oID, callback);
+api.snmpGet(ip, oid, callback);
 </code></pre>
                             </div>
 
@@ -2024,13 +2394,13 @@ namespace Example
         {
             
             var apiInstance = new SNMPApi();
-            var iP = 8.14;  // BigDecimal | IP address of an RSU
-            var oID = 8.14;  // BigDecimal | OID of the attribute you wish to check on
+            var ip = 8.14;  // BigDecimal | IP address of an RSU
+            var oid = 8.14;  // BigDecimal | OID of the attribute you wish to check on
 
             try
             {
                 // RSU SNMP Query
-                Status result = apiInstance.snmpGet(iP, oID);
+                Status result = apiInstance.snmpGet(ip, oid);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2048,11 +2418,11 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\SNMPApi();
-$iP = 8.14; // BigDecimal | IP address of an RSU
-$oID = 8.14; // BigDecimal | OID of the attribute you wish to check on
+$ip = 8.14; // BigDecimal | IP address of an RSU
+$oid = 8.14; // BigDecimal | OID of the attribute you wish to check on
 
 try {
-    $result = $api_instance->snmpGet($iP, $oID);
+    $result = $api_instance->snmpGet($ip, $oid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SNMPApi->snmpGet: ', $e->getMessage(), PHP_EOL;
@@ -2066,11 +2436,11 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::SNMPApi;
 
 my $api_instance = WWW::SwaggerClient::SNMPApi->new();
-my $iP = 8.14; # BigDecimal | IP address of an RSU
-my $oID = 8.14; # BigDecimal | OID of the attribute you wish to check on
+my $ip = 8.14; # BigDecimal | IP address of an RSU
+my $oid = 8.14; # BigDecimal | OID of the attribute you wish to check on
 
 eval { 
-    my $result = $api_instance->snmpGet(iP => $iP, oID => $oID);
+    my $result = $api_instance->snmpGet(ip => $ip, oid => $oid);
     print Dumper($result);
 };
 if ($@) {
@@ -2087,12 +2457,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.SNMPApi()
-iP = 8.14 # BigDecimal | IP address of an RSU
-oID = 8.14 # BigDecimal | OID of the attribute you wish to check on
+ip = 8.14 # BigDecimal | IP address of an RSU
+oid = 8.14 # BigDecimal | OID of the attribute you wish to check on
 
 try: 
     # RSU SNMP Query
-    api_response = api_instance.snmp_get(iP, oID)
+    api_response = api_instance.snmp_get(ip, oid)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SNMPApi->snmpGet: %s\n" % e)</code></pre>
@@ -2111,11 +2481,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">IP*</td>
+                                <tr><td style="width:150px;">ip*</td>
 <td>
 
 
-    <div id="d2e199_snmpGet_iP">
+    <div id="d2e199_snmpGet_ip">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -2137,11 +2507,11 @@ except ApiException as e:
 </td>
 </tr>
 
-                                <tr><td style="width:150px;">OID*</td>
+                                <tr><td style="width:150px;">oid*</td>
 <td>
 
 
-    <div id="d2e199_snmpGet_oID">
+    <div id="d2e199_snmpGet_oid">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -3926,7 +4296,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2018-03-23T13:37:41.366Z
+              Generated 2018-04-30T22:35:56.953Z
             </div>
           </div>
       </div>
