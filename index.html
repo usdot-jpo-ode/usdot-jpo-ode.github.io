@@ -843,28 +843,28 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.NodeXY = {
+            defs.Node = {
   "type" : "object",
   "properties" : {
     "delta" : {
       "type" : "string",
-      "description" : "One of Node-XY-20b, Node-XY-22b, Node-XY-24b, Node-XY-26b, Node-XY-28b, Node-XY-32b, Node-LLmD-64b,"
+      "description" : "Valid values for offset values are offset XY values is node-XY. For this delta, x and y must be defined in meters from achor point. Valid values for offset Lat/Lon values is node-LL. For this delta nodeLat and NodeLong must be defined indegrees from anchor point. Valid values for absolute Lat/Lon is node-LatLon. For this delta nodeLat and nodeLong must be defined for each nodenot relative to anchor point."
     },
     "nodeLat" : {
       "type" : "number",
-      "description" : "Latitude, used for Node-LLmD-64b"
+      "description" : "Latitude in degrees for node-LL (offset) or node-LatLon"
     },
     "nodeLong" : {
       "type" : "number",
-      "description" : "Longitude, used for Node-LLmD-64b"
+      "description" : "Longitude in degrees for Node-LL (offset) or node-LatLon"
     },
     "x" : {
       "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
+      "description" : "Offset x axis in meters for node-XY delta"
     },
     "y" : {
       "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
+      "description" : "Offset y axis in meters for node-XY delta"
     },
     "attributes" : {
       "$ref" : "#/definitions/Attribute"
@@ -984,7 +984,7 @@ margin-bottom: 20px;
     "nodes" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/NodeXY"
+        "$ref" : "#/definitions/Node"
       }
     },
     "computedLane" : {
@@ -1070,16 +1070,17 @@ margin-bottom: 20px;
       "type" : "string"
     },
     "description" : {
-      "type" : "string"
+      "type" : "string",
+      "description" : "Valid values are \"path\" OR \"geometry\". oldregion is not supported"
     },
     "path" : {
       "$ref" : "#/definitions/Path"
     },
-    "oldRegion" : {
-      "$ref" : "#/definitions/OldRegion"
-    },
     "geometry" : {
       "$ref" : "#/definitions/Geometry"
+    },
+    "oldRegion" : {
+      "$ref" : "#/definitions/OldRegion"
     }
   }
 };
@@ -4296,7 +4297,7 @@ $(document).ready(function() {
           </div>
           <div id="generator">
             <div class="content">
-              Generated 2018-04-30T22:35:56.953Z
+              Generated 2018-07-22T16:29:59.185Z
             </div>
           </div>
       </div>
