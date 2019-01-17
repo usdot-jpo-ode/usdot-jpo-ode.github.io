@@ -696,7 +696,7 @@ margin-bottom: 20px;
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs.Attribute = {
+        defs["Attribute"] = {
   "type" : "object",
   "properties" : {
     "localNodes" : {
@@ -731,7 +731,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.Circle = {
+        defs["Circle"] = {
   "type" : "object",
   "properties" : {
     "position" : {
@@ -745,44 +745,36 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.ComputedLane = {
+        defs["ComputedLane"] = {
   "type" : "object",
   "properties" : {
     "laneID" : {
       "type" : "integer",
       "description" : "LaneID [0..255]"
     },
-    "offsetSmallX" : {
-      "type" : "number",
-      "description" : "Reference lane offset measured in meters [-20.47..20.47m]."
-    },
-    "offsetLargeX" : {
+    "offsetXaxis" : {
       "type" : "number",
       "description" : "Reference lane offset measured in meters [-327.67..327.67m]."
     },
-    "offsetSmallY" : {
+    "offsetYaxis" : {
       "type" : "number",
-      "description" : "Reference lane offset measured in meters [-20.47..20.47m]."
+      "description" : "Reference lane offset measured in meters [-327.67..327.67m]."
     },
-    "offsetLargeY" : {
+    "rotateXY" : {
       "type" : "number",
-      "description" : "Reference lane offset measured in meters [-32767..327.67m]."
+      "description" : "Lane rotation measured in degrees [0..359.9875]."
     },
-    "angle" : {
+    "scaleXaxis" : {
       "type" : "number",
-      "description" : "Lane rotation measured in degrees [0..359.9875] in steps of 0.0125."
+      "description" : "Scale factor in percent [0..202.35%]."
     },
-    "xScale" : {
+    "scaleYaxis" : {
       "type" : "number",
-      "description" : "Scale factor in percent [0..202.35%] in steps of 0.05."
-    },
-    "yScale" : {
-      "type" : "number",
-      "description" : "Scale factor in percent [0..202.35%] in steps of 0.05."
+      "description" : "Scale factor in percent [0..202.35%]."
     }
   }
 };
-            defs.DataList = {
+        defs["DataList"] = {
   "type" : "object",
   "properties" : {
     "pathEndpointAngle" : {
@@ -810,7 +802,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.Geometry = {
+        defs["Geometry"] = {
   "type" : "object",
   "properties" : {
     "direction" : {
@@ -831,7 +823,7 @@ margin-bottom: 20px;
   },
   "description" : "GeometricProjection data frame is used to describe various geometric spatial areas"
 };
-            defs.MsgID = {
+        defs["MsgID"] = {
   "type" : "object",
   "properties" : {
     "roadSignID" : {
@@ -839,39 +831,53 @@ margin-bottom: 20px;
     },
     "furtherInfoID" : {
       "type" : "string",
-      "description" : "A link to any other incident information data that may be available in the normal ATIS incident description or other messages, a 4-digit hex string or 16-digit binary string."
+      "description" : "A link to any other incident information data that may be available in the normal ATIS incident description or other messages, a 4-digit hex string."
     }
   }
 };
-            defs.NodeXY = {
+        defs["Node"] = {
   "type" : "object",
   "properties" : {
     "delta" : {
       "type" : "string",
-      "description" : "One of Node-XY-20b, Node-XY-22b, Node-XY-24b, Node-XY-26b, Node-XY-28b, Node-XY-32b, Node-LLmD-64b,"
+      "description" : "Valid values for offset values are offset XY values is node-XY. For this delta, x and y must be defined in meters from achor point. Valid values for offset Lat/Lon values is node-LL. For this delta nodeLat and NodeLong must be defined indegrees from anchor point. Valid values for absolute Lat/Lon is node-LatLon. For this delta nodeLat and nodeLong must be defined for each nodenot relative to anchor point."
     },
     "nodeLat" : {
       "type" : "number",
-      "description" : "Latitude, used for Node-LLmD-64b"
+      "description" : "Latitude in degrees for node-LL (offset) or node-LatLon"
     },
     "nodeLong" : {
       "type" : "number",
-      "description" : "Longitude, used for Node-LLmD-64b"
+      "description" : "Longitude in degrees for Node-LL (offset) or node-LatLon"
     },
     "x" : {
       "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
+      "description" : "Offset x axis in meters for node-XY delta"
     },
     "y" : {
       "type" : "number",
-      "description" : "Offset-B10 in meters [-5.11..5.11m]"
+      "description" : "Offset y axis in meters for node-XY delta"
     },
     "attributes" : {
       "$ref" : "#/definitions/Attribute"
     }
   }
 };
-            defs.Ode = {
+        defs["NodeListXY"] = {
+  "type" : "object",
+  "properties" : {
+    "nodes" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Node"
+      }
+    },
+    "computed" : {
+      "$ref" : "#/definitions/ComputedLane"
+    }
+  }
+};
+        defs["Ode"] = {
   "type" : "object",
   "properties" : {
     "version" : {
@@ -879,7 +885,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.OdePosition3D = {
+        defs["OdePosition3D"] = {
   "type" : "object",
   "properties" : {
     "latitude" : {
@@ -896,7 +902,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.OldRegion = {
+        defs["OldRegion"] = {
   "type" : "object",
   "properties" : {
     "direction" : {
@@ -908,18 +914,18 @@ margin-bottom: 20px;
     "area" : {
       "type" : "string"
     },
-    "regionPoint" : {
-      "$ref" : "#/definitions/RegionPoint"
+    "regionPointSet" : {
+      "$ref" : "#/definitions/RegionPointSet"
     },
     "circle" : {
       "$ref" : "#/definitions/Circle"
     },
-    "shapePoint" : {
-      "$ref" : "#/definitions/ShapePoint"
+    "shapePointSet" : {
+      "$ref" : "#/definitions/ShapePointSet"
     }
   }
 };
-            defs.PDM = {
+        defs["PDM"] = {
   "type" : "object",
   "properties" : {
     "sampleStart" : {
@@ -972,7 +978,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.Path = {
+        defs["Path"] = {
   "type" : "object",
   "properties" : {
     "type" : {
@@ -984,7 +990,7 @@ margin-bottom: 20px;
     "nodes" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/definitions/NodeXY"
+        "$ref" : "#/definitions/Node"
       }
     },
     "computedLane" : {
@@ -992,7 +998,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.ProbeDataManagement = {
+        defs["ProbeDataManagement"] = {
   "type" : "object",
   "properties" : {
     "ode" : {
@@ -1009,7 +1015,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.RSU = {
+        defs["RSU"] = {
   "type" : "object",
   "properties" : {
     "rsuIndex" : {
@@ -1022,11 +1028,11 @@ margin-bottom: 20px;
     },
     "rsuUsername" : {
       "type" : "string",
-      "description" : "SNMP username"
+      "description" : "SNMP username (Not required if value is pre-configured in ODE properties)"
     },
     "rsuPassword" : {
       "type" : "string",
-      "description" : "SNMP password"
+      "description" : "SNMP password (Not required if value is pre-configured in ODE properties)"
     },
     "rsuRetries" : {
       "type" : "integer",
@@ -1039,7 +1045,7 @@ margin-bottom: 20px;
   },
   "description" : "Optional field, needed for SNMP deposit to RSU."
 };
-            defs.Region = {
+        defs["Region"] = {
   "type" : "object",
   "properties" : {
     "name" : {
@@ -1074,20 +1080,21 @@ margin-bottom: 20px;
       "type" : "string"
     },
     "description" : {
-      "type" : "string"
+      "type" : "string",
+      "description" : "Valid values are \"path\" OR \"geometry\". oldregion is not supported"
     },
     "path" : {
       "$ref" : "#/definitions/Path"
     },
-    "oldRegion" : {
-      "$ref" : "#/definitions/OldRegion"
-    },
     "geometry" : {
       "$ref" : "#/definitions/Geometry"
+    },
+    "oldRegion" : {
+      "$ref" : "#/definitions/OldRegion"
     }
   }
 };
-            defs.RegionList = {
+        defs["RegionList"] = {
   "type" : "object",
   "properties" : {
     "xOffset" : {
@@ -1104,7 +1111,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.RegionPoint = {
+        defs["RegionPointSet"] = {
   "type" : "object",
   "properties" : {
     "position" : {
@@ -1122,7 +1129,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.request = {
+        defs["request"] = {
   "type" : "object",
   "properties" : {
     "rsus" : {
@@ -1139,7 +1146,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.RoadSignID = {
+        defs["RoadSignID"] = {
   "type" : "object",
   "properties" : {
     "position" : {
@@ -1154,11 +1161,11 @@ margin-bottom: 20px;
     },
     "crc" : {
       "type" : "string",
-      "description" : "Message cyclic-redundancy-check code in 4-digit hex string or 16-digit binary string."
+      "description" : "Message cyclic-redundancy-check code in 4-digit hex string."
     }
   }
 };
-            defs.SDW = {
+        defs["SDW"] = {
   "type" : "object",
   "properties" : {
     "deliverystart" : {
@@ -1187,7 +1194,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.SDW_serviceRegion = {
+        defs["SDW_serviceRegion"] = {
   "properties" : {
     "nwCorner" : {
       "$ref" : "#/definitions/SDW_serviceRegion_nwCorner"
@@ -1197,7 +1204,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.SDW_serviceRegion_nwCorner = {
+        defs["SDW_serviceRegion_nwCorner"] = {
   "properties" : {
     "latitude" : {
       "type" : "string"
@@ -1207,7 +1214,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.SNMP = {
+        defs["SNMP"] = {
   "type" : "object",
   "properties" : {
     "rsuid" : {
@@ -1242,30 +1249,25 @@ margin-bottom: 20px;
   },
   "description" : "Optional field, needed for SNMP deposit to RSU."
 };
-            defs.ShapePoint = {
+        defs["ShapePointSet"] = {
   "type" : "object",
   "properties" : {
-    "position" : {
+    "anchor" : {
       "$ref" : "#/definitions/OdePosition3D"
     },
-    "directionality" : {
+    "laneWidth" : {
       "type" : "integer"
     },
-    "nodeType" : {
-      "type" : "string"
+    "directionality" : {
+      "type" : "string",
+      "description" : "one of ENUMERATED { unavailable (0), -- unknown or NA, not typically used in valid expressions forward (1), -- direction of travel follows node ordering reverse (2), -- direction of travel is the reverse of node ordering both (3) -- direction of travel allowed in both directions"
     },
-    "computedLane" : {
-      "$ref" : "#/definitions/ComputedLane"
-    },
-    "nodexy" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/NodeXY"
-      }
+    "nodeList" : {
+      "$ref" : "#/definitions/NodeListXY"
     }
   }
 };
-            defs.SpeedLimit = {
+        defs["SpeedLimit"] = {
   "type" : "object",
   "properties" : {
     "type" : {
@@ -1278,7 +1280,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.Status = {
+        defs["Status"] = {
   "type" : "object",
   "properties" : {
     "success" : {
@@ -1289,7 +1291,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.tim = {
+        defs["tim"] = {
   "type" : "object",
   "properties" : {
     "msgCnt" : {
@@ -1302,7 +1304,7 @@ margin-bottom: 20px;
     },
     "packetId" : {
       "type" : "string",
-      "description" : "Provides a unique message ID to given in a 9 byte hex string"
+      "description" : "Provides a unique message ID, in a 9-digit hex string."
     },
     "urlB" : {
       "type" : "string",
@@ -1316,7 +1318,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.TravelerDataFrame = {
+        defs["TravelerDataFrame"] = {
   "type" : "object",
   "required" : [ "sspindex" ],
   "properties" : {
@@ -1373,7 +1375,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.TravelerInputData = {
+        defs["TravelerInputData"] = {
   "type" : "object",
   "properties" : {
     "request" : {
@@ -1384,7 +1386,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.VehicleStatusRequest = {
+        defs["VehicleStatusRequest"] = {
   "type" : "object",
   "properties" : {
     "tag" : {
@@ -1407,7 +1409,7 @@ margin-bottom: 20px;
     }
   }
 };
-            defs.versionResponse = {
+        defs["versionResponse"] = {
   "type" : "object",
   "properties" : {
     "version" : {
@@ -1712,7 +1714,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2008,7 +2010,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2054,7 +2056,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2100,7 +2102,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2410,7 +2412,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2456,7 +2458,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2502,7 +2504,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2836,7 +2838,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -2879,7 +2881,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3177,7 +3179,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3220,7 +3222,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3263,7 +3265,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3306,7 +3308,7 @@ except ApiException as e:
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3613,7 +3615,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3659,7 +3661,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -3705,7 +3707,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4012,7 +4014,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4058,7 +4060,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4104,7 +4106,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4407,7 +4409,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4450,7 +4452,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4493,7 +4495,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4536,7 +4538,7 @@ $(document).ready(function() {
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
-                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          schemaWrapper.definitions = defs;
                                           $RefParser.dereference(schemaWrapper).catch(function(err) {
                                             console.log(err);
                                           });
@@ -4568,11 +4570,6 @@ $(document).ready(function() {
               </p>
                 <div class="license-info">All rights reserved</div>
                 <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
-            </div>
-          </div>
-          <div id="generator">
-            <div class="content">
-              Generated 2018-12-18T20:24:35.330Z
             </div>
           </div>
       </div>
@@ -6295,7 +6292,7 @@ g,0<c.length&&(c=Aa[c[0]])&&(a.c[e]=c))}a.c[e]||(c=Aa[e])&&(a.c[e]=c);for(c=0;c<
 
   <script>
     var schemaWrapper = {};
-    schemaWrapper.definitions = Object.assign({}, defs);
+    schemaWrapper.definitions = defs;
     defsParser = new $RefParser();
     defsParser.dereference(schemaWrapper).catch(function(err) {
       console.log(err);
